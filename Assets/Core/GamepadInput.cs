@@ -1,76 +1,82 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GamepadButton
+namespace Core
 {
-    ButtonA,
-    ButtonB,
-    ButtonX,
-    ButtonY,
-    LBumper,
-    RBumper
-}
-
-public enum GamepadJoystick
-{
-    LeftJoystickHorizontal,
-    LeftJoystickVertical,
-    RightJoystickHorizontal,
-    RightJoystickVertical
-}
-
-public class GamepadInput
-{
-    public int gamepadNumber;
-
-    private Dictionary<GamepadButton, string> buttons = new Dictionary<GamepadButton, string>();
-    private Dictionary<GamepadJoystick, string> joysticks = new Dictionary<GamepadJoystick, string>();
-
-    public bool IsUp(GamepadButton gamepadButton)
+    public enum GamepadButton
     {
-        return Input.GetButtonUp(buttons[gamepadButton]);
+        ButtonA,
+        ButtonB,
+        ButtonX,
+        ButtonY,
+        LBumper,
+        RBumper
     }
 
-    public bool IsDown(GamepadButton gamepadButton)
+    public enum GamepadJoystick
     {
-        return Input.GetButtonDown(buttons[gamepadButton]);
+        LeftJoystickHorizontal,
+        LeftJoystickVertical,
+        RightJoystickHorizontal,
+        RightJoystickVertical
     }
 
-    public bool IsPressed(GamepadButton gamepadButton)
+    public class GamepadInput
     {
-        return Input.GetButton(buttons[gamepadButton]);
-    }
+        public int gamepadNumber;
 
-    public float GetJoystickAxis(GamepadJoystick gamepadJoystick)
-    {
-        return Input.GetAxis(joysticks[gamepadJoystick]);
-    }
+        private Dictionary<GamepadButton, string> buttons = new Dictionary<GamepadButton, string>();
+        private Dictionary<GamepadJoystick, string> joysticks = new Dictionary<GamepadJoystick, string>();
 
-    public void InitController(int number)
-    {
-        gamepadNumber = number;
-        buttons.Clear();
-        joysticks.Clear();
-        InitButtons(number);
-        InitJoysticks(number);
-    }
-
-    private void InitButtons(int number)
-    {
-        foreach (GamepadButton jb in Enum.GetValues(typeof(GamepadButton)))
+        public bool IsUp(GamepadButton gamepadButton)
         {
-            buttons.Add(jb, "J" + number + jb);
+            return Input.GetButtonUp(buttons[gamepadButton]);
         }
-    }
 
-    private void InitJoysticks(int number)
-    {
-        foreach (GamepadJoystick gj in Enum.GetValues(typeof(GamepadJoystick)))
+        public bool IsDown(GamepadButton gamepadButton)
         {
-            joysticks.Add(gj, "J" + number + gj);
-//            Debug.Log("J" + number + gj);
+            return Input.GetButtonDown(buttons[gamepadButton]);
+        }
+
+        public bool IsPressed(GamepadButton gamepadButton)
+        {
+            return Input.GetButton(buttons[gamepadButton]);
+        }
+
+        public float GetJoystickAxis(GamepadJoystick gamepadJoystick)
+        {
+            return Input.GetAxis(joysticks[gamepadJoystick]);
+        }
+
+        public GamepadInput(int gamepadNumber)
+        {
+            InitController(gamepadNumber);
+        }
+
+        private void InitController(int number)
+        {
+            gamepadNumber = number;
+            buttons.Clear();
+            joysticks.Clear();
+            InitButtons(number);
+            InitJoysticks(number);
+        }
+
+        private void InitButtons(int number)
+        {
+            foreach (GamepadButton jb in Enum.GetValues(typeof(GamepadButton)))
+            {
+                buttons.Add(jb, "J" + number + jb);
+            }
+        }
+
+        private void InitJoysticks(int number)
+        {
+            foreach (GamepadJoystick gj in Enum.GetValues(typeof(GamepadJoystick)))
+            {
+                joysticks.Add(gj, "J" + number + gj);
+            }
         }
     }
 }
