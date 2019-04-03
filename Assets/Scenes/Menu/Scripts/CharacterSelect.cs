@@ -22,6 +22,8 @@ namespace Scenes.Menu.Scripts
             {
                 _charactersList[0].SetActive(true);
             }
+
+            transform.GetChild(1).gameObject.SetActive(false);
         }
 
         public Character SelectCurrentCharacter()
