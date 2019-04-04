@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Core;
+﻿using Core;
+using UniRx;
 using Shared.Prefabs.PlayerCharacter;
 using UnityEngine;
 
@@ -45,8 +44,12 @@ public class GameController : MonoBehaviour
             PlayerCharacter playerCharacter = _playerCharacterGameObjects[i].GetComponent<PlayerCharacter>();
             playerCharacter.ActivateSkin(_players[i].activeSkinIndex);
             playerCharacter.playerIndex = i;
-/*            playerCharacter.OnCollision += new PlayerCharacter.OnCollisionEventHandler(PlayerDied);*/
-            
+            playerCharacter.CurrentSkin.onCollisionEnter2DSub.Subscribe((Collision2D other) =>
+            {
+                PlayerDied(playerCharacter.playerIndex);
+            });
+
+
             _players[i].playerCharacter = playerCharacter;
         }
     }
@@ -58,7 +61,7 @@ public class GameController : MonoBehaviour
         {
             if (!player.isDead && player.GamepadInput.IsDown(GamepadButton.ButtonX))
             {
-                Rigidbody2D rb2D = player.playerCharacter.rb2D;
+                Rigidbody2D rb2D = player.playerCharacter.CurrentSkin.rb2D;
                 rb2D.velocity = Vector2.zero;
                 rb2D.AddForce(new Vector2(0, upForce));
             }
@@ -68,5 +71,6 @@ public class GameController : MonoBehaviour
     void PlayerDied(int playerIndex)
     {
         _players[playerIndex].isDead = true;
+        Debug.Log("Player " + playerIndex + " died.");
     }
 }

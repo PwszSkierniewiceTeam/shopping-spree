@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3435915732395347918}
   - component: {fileID: 1583989033562569116}
   - component: {fileID: 6975577401317988498}
+  - component: {fileID: 2940304769088619237}
   m_Layer: 0
   m_Name: Female
   m_TagString: Untagged
@@ -145,6 +146,18 @@ PolygonCollider2D:
       - {x: 0.01, y: -0.53999996}
       - {x: 0.01, y: -0.45999998}
       - {x: 0.01, y: -0.53999996}
+--- !u!114 &2940304769088619237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435915732395347916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63730b74c91ac784ebfa03457de8e121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3435915732718453268
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,6 +170,7 @@ GameObject:
   - component: {fileID: 3435915732718453270}
   - component: {fileID: 1996289974789816048}
   - component: {fileID: 1476656727225900612}
+  - component: {fileID: 3847821822036363245}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -290,6 +304,18 @@ PolygonCollider2D:
       - {x: 0.26, y: -0.55}
       - {x: 0.32, y: -0.45999998}
       - {x: 0.32999998, y: -0.39}
+--- !u!114 &3847821822036363245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435915732718453268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63730b74c91ac784ebfa03457de8e121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3435915733297318276
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +328,7 @@ GameObject:
   - component: {fileID: 3435915733297318278}
   - component: {fileID: 5477038718803161758}
   - component: {fileID: 7042620358071546153}
+  - component: {fileID: 3925312510327500455}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -433,6 +460,18 @@ PolygonCollider2D:
       - {x: 0.26999998, y: -0.55}
       - {x: 0.32999998, y: -0.48999998}
       - {x: 0.32999998, y: -0.14}
+--- !u!114 &3925312510327500455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435915733297318276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63730b74c91ac784ebfa03457de8e121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3435915733319917462
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,6 +484,7 @@ GameObject:
   - component: {fileID: 3435915733319917464}
   - component: {fileID: 2018614297951658029}
   - component: {fileID: 5647608138380321893}
+  - component: {fileID: 7569921934277731199}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Untagged
@@ -578,6 +618,18 @@ PolygonCollider2D:
       - {x: 0.26, y: -0.55}
       - {x: 0.32, y: -0.45999998}
       - {x: 0.32999998, y: -0.39}
+--- !u!114 &7569921934277731199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435915733319917462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63730b74c91ac784ebfa03457de8e121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3435915733521010280
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +642,7 @@ GameObject:
   - component: {fileID: 3435915733521010282}
   - component: {fileID: 1913601234154116353}
   - component: {fileID: 7416484623741232019}
+  - component: {fileID: 1567568423451432150}
   m_Layer: 0
   m_Name: Adventurer
   m_TagString: Untagged
@@ -720,6 +773,18 @@ PolygonCollider2D:
       - {x: 0.26, y: -0.55}
       - {x: 0.32999998, y: -0.47}
       - {x: 0.32999998, y: -0.16}
+--- !u!114 &1567568423451432150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435915733521010280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63730b74c91ac784ebfa03457de8e121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3435915733709829519
 GameObject:
   m_ObjectHideFlags: 0
