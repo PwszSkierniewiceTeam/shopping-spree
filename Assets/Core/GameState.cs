@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Scenes.Menu.Scripts;
-using Shared.Prefabs.PlayerCharacter;
 
 namespace Core
 {
@@ -10,48 +9,48 @@ namespace Core
         public readonly Dictionary<int, CharacterSelect> characterSelects = new Dictionary<int, CharacterSelect>();
         private static GameState _instance;
         private static readonly object Padlock = new object();
-        private readonly Dictionary<int, PlayerCharacter> _playersCharacters = new Dictionary<int, PlayerCharacter>();
+        private readonly Dictionary<int, Player> _players = new Dictionary<int, Player>();
 
         private GameState()
         {
         }
 
-        public void AddPlayerCharacter(PlayerCharacter playerCharacter)
+        public void AddPlayer(Player playerCharacter)
         {
-            _playersCharacters.Add(playerCharacter.Id, playerCharacter);
+            _players.Add(playerCharacter.Id, playerCharacter);
         }
 
-        public List<PlayerCharacter> GetAllPlayersCharacters()
+        public Player[] GetAllPlayers()
         {
-            return _playersCharacters.Values.ToList();
+            return _players.Values.ToArray();
         }
 
-        public bool RemovePlayerCharacterById(int id)
+        public bool RemovePlayerById(int id)
         {
-            return _playersCharacters.Remove(id);
+            return _players.Remove(id);
         }
 
-        public PlayerCharacter GetPlayerCharacterById(int id)
+        public Player GetPlayerById(int id)
         {
-            return _playersCharacters[id];
+            return _players[id];
         }
 
-        public bool RemovePlayerCharacterByGamepadNumber(int gamepadNumber)
+        public bool RemovePlayerByGamepadNumber(int gamepadNumber)
         {
-            foreach (KeyValuePair<int, PlayerCharacter> keyValuePair in _playersCharacters)
+            foreach (KeyValuePair<int, Player> keyValuePair in _players)
             {
                 if (keyValuePair.Value.GamepadInput.gamepadNumber == gamepadNumber)
                 {
-                    return RemovePlayerCharacterById(keyValuePair.Value.Id);
+                    return RemovePlayerById(keyValuePair.Value.Id);
                 }
             }
 
             return false;
         }
 
-        public void ClearPlayersCharacters()
+        public void ClearPlayers()
         {
-            _playersCharacters.Clear();
+            _players.Clear();
         }
 
         public static GameState Instance

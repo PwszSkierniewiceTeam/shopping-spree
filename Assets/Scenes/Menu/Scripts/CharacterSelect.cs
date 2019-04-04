@@ -9,6 +9,7 @@ namespace Scenes.Menu.Scripts
         public GameObject playerCharacterPrefab;
         private GameObject _playerCharacterGameObject;
         private PlayerCharacter _playerCharacter;
+        private Player _player;
 
         public int slotNumber;
         private GamepadInput _gamepadInput;
@@ -22,7 +23,6 @@ namespace Scenes.Menu.Scripts
             _gamepadInput = gamepadInput;
             _playerCharacterGameObject = Instantiate(playerCharacterPrefab, transform);
             _playerCharacter = _playerCharacterGameObject.GetComponent<PlayerCharacter>();
-            _playerCharacter.Initialize(_gamepadInput);
             // Hide A button
             transform.GetChild(0).gameObject.SetActive(false);
         }

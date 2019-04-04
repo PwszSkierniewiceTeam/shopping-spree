@@ -41,13 +41,17 @@ namespace Scenes.Menu.Scripts
                 {
                     if (playerSlot.CharacterSelect.isCharacterSelected())
                     {
-                        GameState.Instance.RemovePlayerCharacterByGamepadNumber(playerSlot.GamepadInput.gamepadNumber);
+                        GameState.Instance.RemovePlayerByGamepadNumber(playerSlot.GamepadInput.gamepadNumber);
                         playerSlot.CharacterSelect.ReselectCharacter();
                     }
                     else
                     {
                         PlayerCharacter playerCharacter = playerSlot.CharacterSelect.GetPlayerCharacter();
-                        GameState.Instance.AddPlayerCharacter(playerCharacter);
+                        Player player = new Player(playerSlot.GamepadInput)
+                        {
+                            activeSkinIndex = playerCharacter.CurrentSkinIndex
+                        };
+                        GameState.Instance.AddPlayer(player);
                     }
                 }
                 else

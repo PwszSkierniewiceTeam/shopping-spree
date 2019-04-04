@@ -398,7 +398,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -2.67}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -520,6 +520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66e4f7dce3e1d014d9bb216e4f2296f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCharacterPrefab: {fileID: 3435915733709829519, guid: ddf9ad4fd904cb84b85f6b8c95f3dd6f,
+    type: 3}
 --- !u!4 &1621009789
 Transform:
   m_ObjectHideFlags: 0
@@ -580,7 +582,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -2.67}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
