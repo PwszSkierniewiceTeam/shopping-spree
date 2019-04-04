@@ -2,6 +2,7 @@
 using Core;
 using Shared.Prefabs.PlayerCharacter;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Scenes.Menu.Scripts
 {
@@ -62,10 +63,11 @@ namespace Scenes.Menu.Scripts
 
             if (gamepadNumber != 0)
             {
-                if (_slots.TrueForAll(ps => ps.CharacterSelect.isCharacterSelected()))
+                if (_slots.Count > 0 && _slots.TrueForAll(ps => ps.CharacterSelect.isCharacterSelected()))
                 {
                     _startingGame = true;
-                    // load other scene
+                    // Todo: add scene randomizer
+                    SceneManager.LoadScene(6);
                 }
             }
         }

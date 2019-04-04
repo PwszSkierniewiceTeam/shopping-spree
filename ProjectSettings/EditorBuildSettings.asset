@@ -4,5 +4,26 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu/Menu.unity
+    guid: afd83328cf1bda74f99f0a187c517028
+  - enabled: 1
+    path: Assets/Scenes/RaceToTheCashRegister/RaceToTheCashRegister.unity
+    guid: e7a6d5921dd6a0b49b26a70e0b2fd6d3
+  - enabled: 1
+    path: Assets/Scenes/AvoidObstacles/AvoidObstacles.unity
+    guid: 910c196902cc5544d978f62cc1832efa
+  - enabled: 1
+    path: Assets/Scenes/CarpCurling/CarpCurling.unity
+    guid: 8cd58ad835fdc864d9a750e8537ac444
+  - enabled: 1
+    path: Assets/Scenes/FishFight/FishFight.unity
+    guid: c1b96c9f8a7b5b34dbf60594f999ecef
+  - enabled: 1
+    path: Assets/Scenes/TvFight/TvFight.unity
+    guid: 8b63bd47eff14244590cdc36c1cbb04b
+  - enabled: 1
+    path: Assets/Scenes/FlappyRun/FlappyRun.unity
+    guid: f030234a55375034aa6240f48b435156
   m_configObjects: {}
