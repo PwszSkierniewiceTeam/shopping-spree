@@ -1,5 +1,4 @@
 ﻿using System;
-using Core;
 using UnityEngine;
 
 namespace Shared.Prefabs.PlayerCharacter
@@ -8,6 +7,7 @@ namespace Shared.Prefabs.PlayerCharacter
     {
         [NonSerialized] public Animator animator;
         [NonSerialized] public Rigidbody2D rb2D;
+        [NonSerialized] public int playerIndex;
 
         private GameObject[] _availableSkins;
 
@@ -17,6 +17,10 @@ namespace Shared.Prefabs.PlayerCharacter
         {
             get { return _availableSkins[CurrentSkinIndex]; }
         }
+
+        public delegate void OnCollisionEventHandler(Collision2D other);
+
+        public event OnCollisionEventHandler OnCollision;
 
         public void ActivateSkin(int index)
         {
@@ -64,6 +68,14 @@ namespace Shared.Prefabs.PlayerCharacter
         public void SelectPreviousSkin()
         {
             ActivateSkin(CurrentSkinIndex > 0 ? CurrentSkinIndex - 1 : _availableSkins.Length - 1);
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (OnCollision != null)
+            {
+                OnCollision(other);
+            }
         }
     }
 }
