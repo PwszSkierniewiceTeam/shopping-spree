@@ -11,7 +11,8 @@ namespace Core
         ButtonX,
         ButtonY,
         LBumper,
-        RBumper
+        RBumper,
+        ButtonStart
     }
 
     public enum GamepadJoystick
