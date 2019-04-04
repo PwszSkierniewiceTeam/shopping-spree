@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core;
+using Shared.Prefabs.PlayerCharacter;
 using UnityEngine;
 
 namespace Scenes.Menu.Scripts
@@ -39,14 +40,13 @@ namespace Scenes.Menu.Scripts
                 {
                     if (playerSlot.CharacterSelect.isCharacterSelected())
                     {
-                        GameState.Instance.RemovePlayerByGamepadNumber(playerSlot.GamepadInput.gamepadNumber);
+                        GameState.Instance.RemovePlayerCharacterByGamepadNumber(playerSlot.GamepadInput.gamepadNumber);
                         playerSlot.CharacterSelect.ReselectCharacter();
                     }
                     else
                     {
-                        Character character = playerSlot.CharacterSelect.SelectCurrentCharacter();
-                        Player player = new Player {Character = character, GamepadInput = playerSlot.GamepadInput};
-                        GameState.Instance.AddPlayer(player);
+                        PlayerCharacter playerCharacter = playerSlot.CharacterSelect.GetPlayerCharacter();
+                        GameState.Instance.AddPlayerCharacter(playerCharacter);
                     }
                 }
                 else

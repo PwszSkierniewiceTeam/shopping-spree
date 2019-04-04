@@ -1,38 +1,37 @@
 ﻿using Core;
+using Shared.Prefabs.PlayerCharacter;
 using UnityEngine;
 
 namespace Scenes.Menu.Scripts
 {
     public class CharacterSelect : MonoBehaviour
     {
+        public GameObject playerCharacterPrefab;
+        private GameObject _playerCharacterGameObject;
+        private PlayerCharacter _playerCharacter;
+
         public int slotNumber;
         private GamepadInput _gamepadInput;
         private bool _changed;
-        private int _charactersCount = 0;
-        private int _currentCharacter = 0;
-        private GameObject[] _charactersList;
         private int[] _slotsWithGamepadNumbers;
         private bool _characterSelected;
-        private GameObject _notSelectedBg;
         private GameObject _selectedBg;
 
         public void SetGamepadInput(GamepadInput gamepadInput)
         {
             _gamepadInput = gamepadInput;
-
-            if (_charactersList[0])
-            {
-                _charactersList[0].SetActive(true);
-            }
-
-            transform.GetChild(1).gameObject.SetActive(false);
+            _playerCharacterGameObject = Instantiate(playerCharacterPrefab, transform);
+            _playerCharacter = _playerCharacterGameObject.GetComponent<PlayerCharacter>();
+            _playerCharacter.Initialize(_gamepadInput);
+            // Hide A button
+            transform.GetChild(0).gameObject.SetActive(false);
         }
 
-        public Character SelectCurrentCharacter()
+        public PlayerCharacter GetPlayerCharacter()
         {
             _selectedBg.SetActive(true);
             _characterSelected = true;
-            return new Character {GameObject = _charactersList[_currentCharacter]};
+            return _playerCharacter;
         }
 
         public void ReselectCharacter()
@@ -56,41 +55,7 @@ namespace Scenes.Menu.Scripts
         {
             int childCount = transform.childCount;
             _selectedBg = transform.GetChild(childCount - 1).gameObject;
-            _notSelectedBg = transform.GetChild(childCount - 2).gameObject;
             _selectedBg.SetActive(false);
-            
-            Transform characters = transform.GetChild(0);
-
-            _charactersCount = characters.childCount;
-            _charactersList = new GameObject[characters.childCount];
-
-            for (int i = 0; i < characters.childCount; i++)
-            {
-                _charactersList[i] = characters.GetChild(i).gameObject;
-            }
-
-            foreach (GameObject go in _charactersList)
-            {
-                go.SetActive(false);
-            }
-        }
-
-        private void ChangeCharacter(bool next)
-        {
-            _charactersList[_currentCharacter].SetActive(false);
-
-            if (next)
-            {
-                _currentCharacter = _currentCharacter < _charactersCount - 1 ? _currentCharacter + 1 : 0;
-            }
-            else
-            {
-                _currentCharacter = _currentCharacter > 0 ? _currentCharacter - 1 : _charactersCount - 1;
-            }
-
-            _charactersList[_currentCharacter].SetActive(true);
-
-            _changed = true;
         }
 
         // Update is called once per frame
@@ -106,11 +71,13 @@ namespace Scenes.Menu.Scripts
                 }
                 else if (!_changed && axis > 0.5f)
                 {
-                    ChangeCharacter(true);
+                    _playerCharacter.SelectNextSkin();
+                    _changed = true;
                 }
                 else if (!_changed && axis < -0.5f)
                 {
-                    ChangeCharacter(false);
+                    _playerCharacter.SelectPreviousSkin();
+                    _changed = true;
                 }
             }
         }
