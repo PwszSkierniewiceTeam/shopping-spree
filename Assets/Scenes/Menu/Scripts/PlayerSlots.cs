@@ -13,11 +13,7 @@ namespace Scenes.Menu.Scripts
     public class PlayerSlots : MonoBehaviour
     {
         private List<PlayerSlot> _slots = new List<PlayerSlot>();
-
-        // Start is called before the first frame update
-        void Start()
-        {
-        }
+        private bool _startingGame;
 
         private void SelectSlot(GamepadInput gamepadInput)
         {
@@ -26,8 +22,13 @@ namespace Scenes.Menu.Scripts
             _slots.Add(new PlayerSlot {GamepadInput = gamepadInput, CharacterSelect = characterSelect});
         }
 
-        private void WaitForSlotSelect()
+        private void WatchSlots()
         {
+            if (_startingGame)
+            {
+                return;
+            }
+
             int gamepadNumber = Gamepads.Instance.IsDown(GamepadButton.ButtonA);
 
             if (gamepadNumber != 0)
@@ -55,13 +56,25 @@ namespace Scenes.Menu.Scripts
             }
         }
 
+        private void WatchGameStart()
+        {
+            int gamepadNumber = Gamepads.Instance.IsUp(GamepadButton.ButtonStart);
+
+            if (gamepadNumber != 0)
+            {
+                if (_slots.TrueForAll(ps => ps.CharacterSelect.isCharacterSelected()))
+                {
+                    _startingGame = true;
+                    // load other scene
+                }
+            }
+        }
+
         // Update is called once per frame
         void Update()
         {
-            if (_slots.Count < 4)
-            {
-                WaitForSlotSelect();
-            }
+            WatchSlots();
+            WatchGameStart();
         }
     }
 }
