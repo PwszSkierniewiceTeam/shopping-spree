@@ -5,6 +5,9 @@ namespace Shared.Prefabs.PlayerCharacter
 {
     public class PlayerCharacter : MonoBehaviour
     {
+        public AudioClip audioFartClip;
+        public AudioSource audioFartSource;
+        
         [NonSerialized] public int playerIndex;
 
         private GameObject[] _availableSkins;
@@ -47,9 +50,16 @@ namespace Shared.Prefabs.PlayerCharacter
             CurrentSkinGameObject.SetActive(true);
         }
 
+        private void InitializeAudio()
+        {
+            audioFartSource.clip = audioFartClip;
+            
+        }
+
         private void Awake()
         {
             InitializeSkins();
+            InitializeAudio();
         }
 
         public void SelectNextSkin()
@@ -60,6 +70,11 @@ namespace Shared.Prefabs.PlayerCharacter
         public void SelectPreviousSkin()
         {
             ActivateSkin(CurrentSkinIndex > 0 ? CurrentSkinIndex - 1 : _availableSkins.Length - 1);
+        }
+
+        public void AudioFart()
+        {
+            audioFartSource.Play();
         }
     }
 }

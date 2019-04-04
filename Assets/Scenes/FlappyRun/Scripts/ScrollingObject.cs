@@ -5,6 +5,7 @@ namespace Scenes.FlappyRun.Scripts
     public class ScrollingObject : MonoBehaviour
     {
         private Rigidbody2D _rb2D;
+
         // Start is called before the first frame update
         void Start()
         {

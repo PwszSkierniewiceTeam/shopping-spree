@@ -25,6 +25,17 @@ namespace Core
             return _players.Values.ToArray();
         }
 
+        /**
+         * Debug purposes only
+         */
+        public void AddPlayers(int number)
+        {
+            for (int i = 1; i <= number; i++)
+            {
+                _players.Add(i, new Player(new GamepadInput(i)));
+            }
+        }
+
         public bool RemovePlayerById(int id)
         {
             return _players.Remove(id);
