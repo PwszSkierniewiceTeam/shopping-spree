@@ -13,6 +13,8 @@ namespace Scenes.Menu.Scripts
         private GameObject[] _charactersList;
         private int[] _slotsWithGamepadNumbers;
         private bool _characterSelected;
+        private GameObject _notSelectedBg;
+        private GameObject _selectedBg;
 
         public void SetGamepadInput(GamepadInput gamepadInput)
         {
@@ -28,6 +30,7 @@ namespace Scenes.Menu.Scripts
 
         public Character SelectCurrentCharacter()
         {
+            _selectedBg.SetActive(true);
             _characterSelected = true;
             return new Character {GameObject = _charactersList[_currentCharacter]};
         }
@@ -35,6 +38,7 @@ namespace Scenes.Menu.Scripts
         public void ReselectCharacter()
         {
             _characterSelected = false;
+            _selectedBg.SetActive(false);
         }
 
         public bool isCharacterSelected()
@@ -50,6 +54,11 @@ namespace Scenes.Menu.Scripts
         // Start is called before the first frame update
         void Start()
         {
+            int childCount = transform.childCount;
+            _selectedBg = transform.GetChild(childCount - 1).gameObject;
+            _notSelectedBg = transform.GetChild(childCount - 2).gameObject;
+            _selectedBg.SetActive(false);
+            
             Transform characters = transform.GetChild(0);
 
             _charactersCount = characters.childCount;
@@ -60,9 +69,9 @@ namespace Scenes.Menu.Scripts
                 _charactersList[i] = characters.GetChild(i).gameObject;
             }
 
-            foreach (GameObject gameObject in _charactersList)
+            foreach (GameObject go in _charactersList)
             {
-                gameObject.SetActive(false);
+                go.SetActive(false);
             }
         }
 
