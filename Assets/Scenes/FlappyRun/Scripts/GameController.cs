@@ -30,7 +30,7 @@ namespace Scenes.FlappyRun.Scripts
             }
 
             audioThemeSource.clip = audioThemeClip;
-            GameState.Instance.AddPlayers(3);
+            // GameState.Instance.AddPlayers(3);
         }
 
         // Start is called before the first frame update
