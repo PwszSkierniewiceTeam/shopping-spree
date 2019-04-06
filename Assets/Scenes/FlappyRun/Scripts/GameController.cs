@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using System.Linq;
+using Core;
 using Shared.Prefabs.PlayerCharacter;
 using UniRx;
 using UnityEngine;
@@ -18,8 +19,9 @@ namespace Scenes.FlappyRun.Scripts
         private Player[] _players;
         private GameObject[] _playerCharacterGameObjects;
         private AudioSource _audioSource;
+        private bool _roundStarted;
 
-        void Awake()
+        private void Awake()
         {
             if (instance == null)
             {
@@ -31,24 +33,27 @@ namespace Scenes.FlappyRun.Scripts
                 Destroy(gameObject);
             }
 
-//            GameState.Instance.AddPlayers(3);
+            GameState.Instance.AddPlayers(3);
         }
 
-        void Start()
+        private void Start()
         {
             _players = GameState.Instance.GetAllPlayers();
             _playerCharacterGameObjects = new GameObject[_players.Length];
             SpawnPlayersCharacters();
 
+            Physics2D.gravity = Vector2.zero;
             Countdown countdownInstance = countdown.GetComponent<Countdown>();
             countdownInstance.StartCountdown().Subscribe((c) =>
             {
                 Debug.Log("Countdown finished");
                 _audioSource.Play();
+                Physics2D.gravity = new Vector2(0, -9.8f);
+                _roundStarted = true;
             });
         }
 
-        void SpawnPlayersCharacters()
+        private void SpawnPlayersCharacters()
         {
             float begin = -8f;
             for (int i = 0; i < _players.Length; i++)
@@ -63,17 +68,16 @@ namespace Scenes.FlappyRun.Scripts
                 {
                     PlayerDied(playerCharacter.playerIndex);
                 });
-
-
+                
                 _players[i].playerCharacter = playerCharacter;
             }
         }
 
-        void Update()
+        private void Update()
         {
             foreach (Player player in _players)
             {
-                if (!player.isDead && player.GamepadInput.IsDown(GamepadButton.ButtonX))
+                if (_roundStarted && !player.isDead && player.GamepadInput.IsDown(GamepadButton.ButtonX))
                 {
                     player.playerCharacter.AudioFart();
                     Rigidbody2D rb2D = player.playerCharacter.rb2D;
@@ -83,10 +87,22 @@ namespace Scenes.FlappyRun.Scripts
             }
         }
 
-        void PlayerDied(int playerIndex)
+        private void CheckGameOver()
+        {
+            int deadPlayersCount = _players.Count(player => player.isDead);
+
+            if (deadPlayersCount < _players.Length - 1)
+            {
+                gameOver = true;
+                
+            }
+        }
+
+        private void PlayerDied(int playerIndex)
         {
             _players[playerIndex].isDead = true;
             Debug.Log("Player " + playerIndex + " died.");
+            CheckGameOver();
         }
     }
 }
