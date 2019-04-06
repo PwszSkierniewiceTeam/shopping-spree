@@ -14,7 +14,7 @@ namespace Scenes.Menu.Scripts
 
     public class PlayerSlots : MonoBehaviour
     {
-        private List<PlayerSlot> _slots = new List<PlayerSlot>();
+        private readonly List<PlayerSlot> _slots = new List<PlayerSlot>();
         private bool _startingGame;
 
         private void SelectSlot(GamepadInput gamepadInput)
