@@ -1,15 +1,19 @@
 ﻿using System;
+using UniRx;
 using UnityEngine;
 
 namespace Shared.Prefabs.PlayerCharacter
 {
     public class PlayerCharacter : MonoBehaviour
     {
-        public AudioClip audioFartClip;
-        public AudioSource audioFartSource;
-        
+        [NonSerialized] public readonly Subject<Collision2D> onCollisionEnter2DSub = new Subject<Collision2D>();
+        [NonSerialized] public Rigidbody2D rb2D;
+
+        public AudioClip fartSound;
+
         [NonSerialized] public int playerIndex;
 
+        private AudioSource _audioSource;
         private GameObject[] _availableSkins;
         public int CurrentSkinIndex { get; private set; }
         public PlayerCharacterSkin CurrentSkin { get; private set; }
@@ -50,10 +54,19 @@ namespace Shared.Prefabs.PlayerCharacter
             CurrentSkinGameObject.SetActive(true);
         }
 
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            onCollisionEnter2DSub.OnNext(other);
+        }
+
+        private void Start()
+        {
+            rb2D = GetComponent<Rigidbody2D>();
+        }
+
         private void InitializeAudio()
         {
-            audioFartSource.clip = audioFartClip;
-            
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Awake()
@@ -74,7 +87,7 @@ namespace Shared.Prefabs.PlayerCharacter
 
         public void AudioFart()
         {
-            audioFartSource.Play();
+            _audioSource.PlayOneShot(fartSound);
         }
     }
 }

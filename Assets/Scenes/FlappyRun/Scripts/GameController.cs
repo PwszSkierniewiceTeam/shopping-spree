@@ -8,13 +8,13 @@ namespace Scenes.FlappyRun.Scripts
     public class GameController : MonoBehaviour
     {
         public static GameController instance;
-        
+
         public GameObject countdown;
         public bool gameOver;
         public float scrollSpeed = -1.5f;
         public float upForce = 200f;
         public GameObject playerCharacterPrefab;
-        
+
         private Player[] _players;
         private GameObject[] _playerCharacterGameObjects;
         private AudioSource _audioSource;
@@ -34,12 +34,12 @@ namespace Scenes.FlappyRun.Scripts
 //            GameState.Instance.AddPlayers(3);
         }
 
-        // Start is called before the first frame update
         void Start()
         {
             _players = GameState.Instance.GetAllPlayers();
             _playerCharacterGameObjects = new GameObject[_players.Length];
             SpawnPlayersCharacters();
+
             Countdown countdownInstance = countdown.GetComponent<Countdown>();
             countdownInstance.StartCountdown().Subscribe((c) =>
             {
@@ -59,7 +59,7 @@ namespace Scenes.FlappyRun.Scripts
                 PlayerCharacter playerCharacter = _playerCharacterGameObjects[i].GetComponent<PlayerCharacter>();
                 playerCharacter.ActivateSkin(_players[i].activeSkinIndex);
                 playerCharacter.playerIndex = i;
-                playerCharacter.CurrentSkin.onCollisionEnter2DSub.Subscribe((Collision2D other) =>
+                playerCharacter.onCollisionEnter2DSub.Subscribe((Collision2D other) =>
                 {
                     PlayerDied(playerCharacter.playerIndex);
                 });
@@ -69,7 +69,6 @@ namespace Scenes.FlappyRun.Scripts
             }
         }
 
-        // Update is called once per frame
         void Update()
         {
             foreach (Player player in _players)
@@ -77,7 +76,7 @@ namespace Scenes.FlappyRun.Scripts
                 if (!player.isDead && player.GamepadInput.IsDown(GamepadButton.ButtonX))
                 {
                     player.playerCharacter.AudioFart();
-                    Rigidbody2D rb2D = player.playerCharacter.CurrentSkin.rb2D;
+                    Rigidbody2D rb2D = player.playerCharacter.rb2D;
                     rb2D.velocity = Vector2.zero;
                     rb2D.AddForce(new Vector2(0, upForce));
                 }
