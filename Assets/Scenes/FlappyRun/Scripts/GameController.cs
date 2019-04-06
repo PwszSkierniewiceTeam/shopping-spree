@@ -7,30 +7,31 @@ namespace Scenes.FlappyRun.Scripts
 {
     public class GameController : MonoBehaviour
     {
-        public AudioClip audioThemeClip;
-        public AudioSource audioThemeSource;
-
+        public static GameController instance;
+        
+        public GameObject countdown;
         public bool gameOver;
         public float scrollSpeed = -1.5f;
         public float upForce = 200f;
-        public static GameController instance;
         public GameObject playerCharacterPrefab;
+        
         private Player[] _players;
         private GameObject[] _playerCharacterGameObjects;
+        private AudioSource _audioSource;
 
         void Awake()
         {
             if (instance == null)
             {
                 instance = this;
+                _audioSource = GetComponent<AudioSource>();
             }
             else if (instance != this)
             {
                 Destroy(gameObject);
             }
 
-            audioThemeSource.clip = audioThemeClip;
-            // GameState.Instance.AddPlayers(3);
+//            GameState.Instance.AddPlayers(3);
         }
 
         // Start is called before the first frame update
@@ -39,7 +40,12 @@ namespace Scenes.FlappyRun.Scripts
             _players = GameState.Instance.GetAllPlayers();
             _playerCharacterGameObjects = new GameObject[_players.Length];
             SpawnPlayersCharacters();
-            audioThemeSource.Play();
+            Countdown countdownInstance = countdown.GetComponent<Countdown>();
+            countdownInstance.StartCountdown().Subscribe((c) =>
+            {
+                Debug.Log("Countdown finished");
+                _audioSource.Play();
+            });
         }
 
         void SpawnPlayersCharacters()
