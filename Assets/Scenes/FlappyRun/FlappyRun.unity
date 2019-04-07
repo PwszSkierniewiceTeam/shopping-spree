@@ -527,9 +527,9 @@ MonoBehaviour:
   columnPoolSize: 5
   columnPrefab: {fileID: 6575223905412002057, guid: df56ae92d76472843b9ce26b433b7eaf,
     type: 3}
-  spawnRate: 3
-  columnMin: -2
-  columnMax: 2
+  spawnRate: 4
+  columnMin: -3
+  columnMax: 3
 --- !u!82 &1621009791
 AudioSource:
   m_ObjectHideFlags: 0

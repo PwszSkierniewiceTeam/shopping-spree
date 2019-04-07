@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Core;
 using Shared.Prefabs.PlayerCharacter;
 using UniRx;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Scenes.FlappyRun.Scripts
 {
@@ -15,6 +17,7 @@ namespace Scenes.FlappyRun.Scripts
         public float scrollSpeed = -1.5f;
         public float upForce = 200f;
         public GameObject playerCharacterPrefab;
+        public int winsToWinLevel = 2;
 
         private Player[] _players;
         private GameObject[] _playerCharacterGameObjects;
@@ -33,7 +36,11 @@ namespace Scenes.FlappyRun.Scripts
                 Destroy(gameObject);
             }
 
-            GameState.Instance.AddPlayers(3);
+            // debug purposes
+            if (GameState.Instance.GetAllPlayers().Length == 0)
+            {
+                GameState.Instance.AddPlayers(3);
+            }
         }
 
         private void Start()
@@ -46,7 +53,6 @@ namespace Scenes.FlappyRun.Scripts
             Countdown countdownInstance = countdown.GetComponent<Countdown>();
             countdownInstance.StartCountdown().Subscribe((c) =>
             {
-                Debug.Log("Countdown finished");
                 _audioSource.Play();
                 Physics2D.gravity = new Vector2(0, -9.8f);
                 _roundStarted = true;
@@ -68,7 +74,8 @@ namespace Scenes.FlappyRun.Scripts
                 {
                     PlayerDied(playerCharacter.playerIndex);
                 });
-                
+
+                _players[i].isDead = false;
                 _players[i].playerCharacter = playerCharacter;
             }
         }
@@ -77,7 +84,7 @@ namespace Scenes.FlappyRun.Scripts
         {
             foreach (Player player in _players)
             {
-                if (_roundStarted && !player.isDead && player.GamepadInput.IsDown(GamepadButton.ButtonX))
+                if (!gameOver && _roundStarted && !player.isDead && player.GamepadInput.IsDown(GamepadButton.ButtonX))
                 {
                     player.playerCharacter.AudioFart();
                     Rigidbody2D rb2D = player.playerCharacter.rb2D;
@@ -87,21 +94,41 @@ namespace Scenes.FlappyRun.Scripts
             }
         }
 
+        private void ClearLevelScores()
+        {
+            foreach (Player player in _players)
+            {
+                player.levelScore = 0;
+            }
+        }
+
         private void CheckGameOver()
         {
             int deadPlayersCount = _players.Count(player => player.isDead);
 
-            if (deadPlayersCount < _players.Length - 1)
+            if (deadPlayersCount == _players.Length - 1)
             {
                 gameOver = true;
-                
+                Player player = _players.ToList().Find(p => !p.isDead);
+                player.levelScore += 1;
+
+                if (player.levelScore == winsToWinLevel)
+                {
+                    player.globalScore += 1;
+                    ClearLevelScores();
+                    // show global scores screen
+                }
+                else
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
             }
         }
 
         private void PlayerDied(int playerIndex)
         {
-            _players[playerIndex].isDead = true;
-            Debug.Log("Player " + playerIndex + " died.");
+            Player player = _players[playerIndex];
+            player.isDead = true;
             CheckGameOver();
         }
     }

@@ -7,8 +7,8 @@ namespace Scenes.FlappyRun.Scripts
         public int columnPoolSize = 5;
         public GameObject columnPrefab;
         public float spawnRate = 4f;
-        public float columnMin = -5f;
-        public float columnMax = 5f;
+        public float columnMin = -3f;
+        public float columnMax = 3f;
 
         private GameObject[] _columns;
         private readonly Vector2 _objectPoolPosition = new Vector2(-15f, -25f);
