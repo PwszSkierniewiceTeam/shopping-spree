@@ -1,5 +1,6 @@
 ﻿using Core;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Scenes.ScoreBoard.Scripts
 {
@@ -13,6 +14,7 @@ namespace Scenes.ScoreBoard.Scripts
         private ScoreComponent _scoreComponent;
         private GameObject[] _statuses;
         private Vector2[] _playerPositions;
+        private int _playersReady = 0;
 
         private void Awake()
         {
@@ -72,6 +74,12 @@ namespace Scenes.ScoreBoard.Scripts
                     _statuses[i].SetActive(false);
                     _statuses[i] = Instantiate(readyStatusPrefab, _statuses[i].transform.position,
                         Quaternion.identity, transform);
+                    _playersReady += 1;
+
+                    if (_playersReady == players.Length)
+                    {
+                        SceneManager.LoadScene(GameRandomizer.Instance.GetNextSceneBuildIndex());
+                    }
                 }
             }
         }

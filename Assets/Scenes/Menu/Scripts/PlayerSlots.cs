@@ -67,11 +67,10 @@ namespace Scenes.Menu.Scripts
 
             if (gamepadNumber != 0)
             {
-                if (_slots.Count > 0 && _slots.TrueForAll(ps => ps.CharacterSelect.isCharacterSelected()))
+                if (_slots.Count > 1 && _slots.TrueForAll(ps => ps.CharacterSelect.isCharacterSelected()))
                 {
                     _startingGame = true;
-                    // Todo: add scene randomizer
-                    SceneManager.LoadScene(6);
+                    SceneManager.LoadScene(GameRandomizer.Instance.GetNextSceneBuildIndex());
                 }
             }
         }

@@ -109,7 +109,7 @@ namespace Scenes.FlappyRun.Scripts
                     player.globalScore += 1;
                     GameState.Instance.lastWinner = player;
                     ClearLevelScores();
-                    SceneManager.LoadScene(7);
+                    SceneManager.LoadScene((int) AvailableScene.ScoreBoard);
                 }
                 else
                 {

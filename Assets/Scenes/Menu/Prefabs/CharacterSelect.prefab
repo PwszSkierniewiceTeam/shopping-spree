@@ -89,6 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5745607488515217699}
   - component: {fileID: 5745607488515217696}
+  - component: {fileID: 8999283360881158832}
   m_Layer: 0
   m_Name: RightArrow
   m_TagString: Untagged
@@ -158,6 +159,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8999283360881158832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745607488515217697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &5745607488773658271
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5745607489301933772}
   - component: {fileID: 5745607489301933773}
+  - component: {fileID: 7842286752685593518}
   m_Layer: 0
   m_Name: LeftArrow
   m_TagString: Untagged
@@ -468,6 +485,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7842286752685593518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745607489301933618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &5791922859293486619
 GameObject:
   m_ObjectHideFlags: 0
