@@ -51,3 +51,7 @@ MonoBehaviour:
     type: 3}
   silverScoreTopPrefab: {fileID: 5139439727506249425, guid: b165fe37063584d4ba67fa704e45ee26,
     type: 3}
+  penaltyPrefab: {fileID: 7760043704495342752, guid: 7264ff945aeee024e8c8d42985ce4cf5,
+    type: 3}
+  prizePrefab: {fileID: 145806283230117769, guid: 5d05a9553a5aa924ab388f920eae83ad,
+    type: 3}

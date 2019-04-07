@@ -10,21 +10,7 @@ namespace Scenes.ScoreBoard.Scripts
 
         private ScoreComponent _scoreComponent;
 
-        private readonly Vector2[] _playerPositions =
-        {
-            new Vector2(-7.5f, 0),
-            new Vector2(-2.5f, 0),
-            new Vector2(2.5f, 0),
-            new Vector2(7.5f, 0)
-        };
-
-        private readonly Vector2[] _scorePositions =
-        {
-            new Vector2(-7.5f, 1f),
-            new Vector2(-2.5f, 1f),
-            new Vector2(2.5f, 1f),
-            new Vector2(7.5f, 1f)
-        };
+        private Vector2[] _playerPositions;
 
         private void Awake()
         {
@@ -35,20 +21,37 @@ namespace Scenes.ScoreBoard.Scripts
             }
         }
 
+        private void CalcPlayerPositions()
+        {
+            _playerPositions = new Vector2[players.Length];
+            float width = 20f;
+            float spacing = width / (players.Length + 1);
+
+            Vector2 pos = new Vector2(-10f, 0);
+            for (int i = 0; i < players.Length; i++)
+            {
+                pos = new Vector2(pos.x + spacing, 0);
+                _playerPositions[i] = pos;
+            }
+        }
 
         // Start is called before the first frame update
-        new void Start()
+        private new void Start()
         {
             base.Start();
+            CalcPlayerPositions();
             Physics2D.gravity = Vector2.zero;
-
             SpawnPlayersCharacters(_playerPositions);
 
             _scoreComponent = scorePrefab.GetComponent<ScoreComponent>();
 
             for (int i = 0; i < players.Length; i++)
             {
-                _scoreComponent.ShowScore(players[i].globalScore, wonRoundsToWin, _scorePositions[i], transform);
+                _scoreComponent.ShowScore(players[i].globalScore, wonRoundsToWin,
+                    _playerPositions[i] + new Vector2(0, 1f), transform);
+                _scoreComponent.ShowPenalty(
+                    GameState.Instance.lastWinner != null && GameState.Instance.lastWinner.Id == players[i].Id,
+                    _playerPositions[i] + new Vector2(0, -1.5f), 1, 3, transform);
             }
         }
     }
