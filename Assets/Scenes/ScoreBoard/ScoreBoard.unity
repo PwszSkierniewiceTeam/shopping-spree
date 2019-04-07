@@ -252,6 +252,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84dceecc6c3076c4b8a6e4c4e09fae73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCharacterPrefab: {fileID: 3435915733709829519, guid: ddf9ad4fd904cb84b85f6b8c95f3dd6f,
+    type: 3}
+  countdown: {fileID: 3373458369772644563, guid: 52614265938a2c542b51ffb0e425e152,
+    type: 3}
+  wonRoundsToWin: 3
+  scorePrefab: {fileID: 7684832635802493297, guid: ed218b56854e1254d92f67dccba5e675,
+    type: 3}
 --- !u!1 &1656458940
 GameObject:
   m_ObjectHideFlags: 0
