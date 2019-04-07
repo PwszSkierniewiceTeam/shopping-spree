@@ -6,6 +6,7 @@ namespace Core
 {
     public class GameState
     {
+        public Player lastWinner;
         public readonly Dictionary<int, CharacterSelect> characterSelects = new Dictionary<int, CharacterSelect>();
         private static GameState _instance;
         private static readonly object Padlock = new object();

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Core;
 using Shared.Prefabs.PlayerCharacter;
 using UniRx;
@@ -115,8 +114,9 @@ namespace Scenes.FlappyRun.Scripts
                 if (player.levelScore == winsToWinLevel)
                 {
                     player.globalScore += 1;
+                    GameState.Instance.lastWinner = player;
                     ClearLevelScores();
-                    // show global scores screen
+                    SceneManager.LoadScene(7);
                 }
                 else
                 {
