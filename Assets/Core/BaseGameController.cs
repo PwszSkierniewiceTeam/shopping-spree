@@ -30,6 +30,7 @@ namespace Core
                 playerCharacter.ActivateSkin(players[i].activeSkinIndex);
                 playerCharacter.playerIndex = i;
                 players[i].isDead = false;
+                players[i].isReady = false;
                 players[i].playerCharacter = playerCharacter;
             }
         }

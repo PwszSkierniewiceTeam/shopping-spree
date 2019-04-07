@@ -7,9 +7,11 @@ namespace Scenes.ScoreBoard.Scripts
     {
         public int wonRoundsToWin = 3;
         public GameObject scorePrefab;
+        public GameObject readyStatusPrefab;
+        public GameObject notReadyStatusPrefab;
 
         private ScoreComponent _scoreComponent;
-
+        private GameObject[] _statuses;
         private Vector2[] _playerPositions;
 
         private void Awake()
@@ -39,6 +41,7 @@ namespace Scenes.ScoreBoard.Scripts
         private new void Start()
         {
             base.Start();
+            _statuses = new GameObject[players.Length];
             CalcPlayerPositions();
             Physics2D.gravity = Vector2.zero;
             SpawnPlayersCharacters(_playerPositions);
@@ -52,6 +55,24 @@ namespace Scenes.ScoreBoard.Scripts
                 _scoreComponent.ShowPenalty(
                     GameState.Instance.lastWinner != null && GameState.Instance.lastWinner.Id == players[i].Id,
                     _playerPositions[i] + new Vector2(0, -1.5f), 1, 3, transform);
+                _statuses[i] = Instantiate(notReadyStatusPrefab, _playerPositions[i] + new Vector2(0, -2.5f),
+                    Quaternion.identity, transform);
+            }
+        }
+
+        private void Update()
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                Player player = players[i];
+
+                if (player.GamepadInput.IsUp(GamepadButton.ButtonA) && !player.isReady)
+                {
+                    player.isReady = true;
+                    _statuses[i].SetActive(false);
+                    _statuses[i] = Instantiate(readyStatusPrefab, _statuses[i].transform.position,
+                        Quaternion.identity, transform);
+                }
             }
         }
     }

@@ -5,6 +5,7 @@ namespace Core
     public class Player
     {
         public bool isDead = false;
+        public bool isReady = false;
         public int activeSkinIndex = 0;
         public int levelScore = 0;
         public int globalScore = 0;

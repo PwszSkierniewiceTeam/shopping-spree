@@ -53,5 +53,5 @@ MonoBehaviour:
     type: 3}
   penaltyPrefab: {fileID: 7760043704495342752, guid: 7264ff945aeee024e8c8d42985ce4cf5,
     type: 3}
-  prizePrefab: {fileID: 145806283230117769, guid: 5d05a9553a5aa924ab388f920eae83ad,
+  prizePrefab: {fileID: 1605280448420336149, guid: 961ede0d309fb3444a29a316def63184,
     type: 3}
