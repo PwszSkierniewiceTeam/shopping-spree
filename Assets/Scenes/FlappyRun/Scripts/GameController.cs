@@ -7,19 +7,14 @@ using UnityEngine.SceneManagement;
 
 namespace Scenes.FlappyRun.Scripts
 {
-    public class GameController : MonoBehaviour
+    public class GameController : BaseGameController
     {
         public static GameController instance;
 
-        public GameObject countdown;
-        public bool gameOver;
         public float scrollSpeed = -1.5f;
         public float upForce = 200f;
-        public GameObject playerCharacterPrefab;
         public int winsToWinLevel = 2;
 
-        private Player[] _players;
-        private GameObject[] _playerCharacterGameObjects;
         private AudioSource _audioSource;
         private bool _roundStarted;
 
@@ -42,11 +37,18 @@ namespace Scenes.FlappyRun.Scripts
             }
         }
 
-        private void Start()
+        private new void Start()
         {
-            _players = GameState.Instance.GetAllPlayers();
-            _playerCharacterGameObjects = new GameObject[_players.Length];
-            SpawnPlayersCharacters();
+            base.Start();
+            SpawnPlayersCharacters(new[]
+                {
+                    new Vector2(-8f, 0),
+                    new Vector2(-7f, 0),
+                    new Vector2(-6f, 0),
+                    new Vector2(-5f, 0)
+                }
+            );
+            WatchForCollisions();
 
             Physics2D.gravity = Vector2.zero;
             Countdown countdownInstance = countdown.GetComponent<Countdown>();
@@ -58,30 +60,21 @@ namespace Scenes.FlappyRun.Scripts
             });
         }
 
-        private void SpawnPlayersCharacters()
+        private void WatchForCollisions()
         {
-            float begin = -8f;
-            for (int i = 0; i < _players.Length; i++)
+            foreach (Player player in players)
             {
-                begin += 1;
-                _playerCharacterGameObjects[i] = Instantiate(playerCharacterPrefab, new Vector2(begin, 0),
-                    Quaternion.identity, transform);
-                PlayerCharacter playerCharacter = _playerCharacterGameObjects[i].GetComponent<PlayerCharacter>();
-                playerCharacter.ActivateSkin(_players[i].activeSkinIndex);
-                playerCharacter.playerIndex = i;
-                playerCharacter.onCollisionEnter2DSub.Subscribe((Collision2D other) =>
+                Player p = player;
+                p.playerCharacter.onCollisionEnter2DSub.Subscribe((Collision2D other) =>
                 {
-                    PlayerDied(playerCharacter.playerIndex);
+                    PlayerDied(p.playerCharacter.playerIndex);
                 });
-
-                _players[i].isDead = false;
-                _players[i].playerCharacter = playerCharacter;
             }
         }
 
         private void Update()
         {
-            foreach (Player player in _players)
+            foreach (Player player in players)
             {
                 if (!gameOver && _roundStarted && !player.isDead && player.GamepadInput.IsDown(GamepadButton.ButtonX))
                 {
@@ -95,7 +88,7 @@ namespace Scenes.FlappyRun.Scripts
 
         private void ClearLevelScores()
         {
-            foreach (Player player in _players)
+            foreach (Player player in players)
             {
                 player.levelScore = 0;
             }
@@ -103,12 +96,12 @@ namespace Scenes.FlappyRun.Scripts
 
         private void CheckGameOver()
         {
-            int deadPlayersCount = _players.Count(player => player.isDead);
+            int deadPlayersCount = players.Count(player => player.isDead);
 
-            if (deadPlayersCount == _players.Length - 1)
+            if (deadPlayersCount == players.Length - 1)
             {
                 gameOver = true;
-                Player player = _players.ToList().Find(p => !p.isDead);
+                Player player = players.ToList().Find(p => !p.isDead);
                 player.levelScore += 1;
 
                 if (player.levelScore == winsToWinLevel)
@@ -127,7 +120,7 @@ namespace Scenes.FlappyRun.Scripts
 
         private void PlayerDied(int playerIndex)
         {
-            Player player = _players[playerIndex];
+            Player player = players[playerIndex];
             player.isDead = true;
             CheckGameOver();
         }
