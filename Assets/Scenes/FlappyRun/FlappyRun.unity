@@ -491,12 +491,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66e4f7dce3e1d014d9bb216e4f2296f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdown: {fileID: 1834943004}
-  gameOver: 0
-  scrollSpeed: -1.5
-  upForce: 200
   playerCharacterPrefab: {fileID: 3435915733709829519, guid: ddf9ad4fd904cb84b85f6b8c95f3dd6f,
     type: 3}
+  countdown: {fileID: 1834943004}
+  scrollSpeed: -1.5
+  upForce: 200
+  winsToWinLevel: 2
 --- !u!4 &1621009789
 Transform:
   m_ObjectHideFlags: 0
