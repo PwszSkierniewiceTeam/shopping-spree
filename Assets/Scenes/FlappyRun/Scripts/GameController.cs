@@ -41,10 +41,10 @@ namespace Scenes.FlappyRun.Scripts
             base.Start();
             SpawnPlayersCharacters(new[]
                 {
-                    new Vector2(-8f, 0),
-                    new Vector2(-7f, 0),
                     new Vector2(-6f, 0),
-                    new Vector2(-5f, 0)
+                    new Vector2(-5f, 0),
+                    new Vector2(-4f, 0),
+                    new Vector2(-3f, 0)
                 }
             );
             WatchForCollisions();
