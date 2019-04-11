@@ -78,7 +78,14 @@ namespace Scenes.ScoreBoard.Scripts
 
                     if (_playersReady == players.Length)
                     {
-                        SceneManager.LoadScene(GameRandomizer.Instance.GetNextSceneBuildIndex());
+                        if (GameState.Instance.GetPlayerWithHighestScore().globalScore == wonRoundsToWin)
+                        {
+                            SceneManager.LoadScene((int) AvailableScene.GameOver);
+                        }
+                        else
+                        {
+                            SceneManager.LoadScene(GameRandomizer.Instance.GetNextSceneBuildIndex());
+                        }
                     }
                 }
             }

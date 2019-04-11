@@ -1,5 +1,6 @@
 ﻿using Core;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Scenes.GameOver.Scripts
 {
@@ -11,7 +12,7 @@ namespace Scenes.GameOver.Scripts
         private new void Start()
         {
             Physics2D.gravity = Vector2.zero;
-            
+
             _player = GameState.Instance.GetPlayerWithHighestScore();
 
             SpawnPlayerCharacter(_player, new Vector2(0, 0));
@@ -20,6 +21,10 @@ namespace Scenes.GameOver.Scripts
         // Update is called once per frame
         private void Update()
         {
+            if (_player.GamepadInput.IsUp(GamepadButton.ButtonA))
+            {
+                SceneManager.LoadScene((int) AvailableScene.Menu);
+            }
         }
     }
 }

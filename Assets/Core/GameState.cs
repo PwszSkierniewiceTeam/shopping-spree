@@ -60,9 +60,11 @@ namespace Core
             return false;
         }
 
-        public void ClearPlayers()
+        public void Clear()
         {
             _players.Clear();
+            characterSelects.Clear();
+            lastWinner = null;
         }
 
         public static GameState Instance

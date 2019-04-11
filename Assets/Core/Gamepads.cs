@@ -2,7 +2,7 @@
 {
     public sealed class Gamepads
     {
-        private GamepadInput[] _gamepadInputs =
+        private readonly GamepadInput[] _gamepadInputs =
         {
             new GamepadInput(1),
             new GamepadInput(2),

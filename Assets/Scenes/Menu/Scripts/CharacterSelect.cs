@@ -21,6 +21,11 @@ namespace Scenes.Menu.Scripts
         private bool _characterSelected;
         private GameObject _selectedBg;
 
+        public CharacterSelect()
+        {
+            GameState.Instance.Clear();
+        }
+
         public void SetGamepadInput(GamepadInput gamepadInput)
         {
             _gamepadInput = gamepadInput;
