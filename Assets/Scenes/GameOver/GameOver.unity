@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 21071043137476170, guid: 5895474f9a06b98488bd1ce54e1c7e44,
+  m_Material: {fileID: 21729873224154338, guid: bacc4c3116b1c064b918842542af716c,
     type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -393,10 +393,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_spriteAsset: {fileID: 11400000, guid: 5895474f9a06b98488bd1ce54e1c7e44, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b19c1a21cb89971469d364eaa4d5ec41, type: 2}
+  m_spriteAsset: {fileID: 11400000, guid: bacc4c3116b1c064b918842542af716c, type: 2}
   m_material: {fileID: 0}
-  m_sharedMaterial: {fileID: 21071043137476170, guid: 5895474f9a06b98488bd1ce54e1c7e44,
+  m_sharedMaterial: {fileID: 21729873224154338, guid: bacc4c3116b1c064b918842542af716c,
     type: 2}
   m_isDefaultMaterial: 1
   m_padding: 0
@@ -551,7 +551,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "You won! \nWhen you're ready, press <sprite=\"360_A\" index=\"0\">"
+  m_text: "You won! \nWhen you're ready, press <sprite=\"360Sprite\" name=\"A\">"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b19c1a21cb89971469d364eaa4d5ec41, type: 2}
   m_sharedMaterial: {fileID: 21104168960757494, guid: b19c1a21cb89971469d364eaa4d5ec41,

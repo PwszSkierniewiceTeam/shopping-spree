@@ -10,6 +10,8 @@ namespace Scenes.FlappyRun.Scripts
     {
         public static GameController instance;
 
+        public GameObject instruction;
+        
         public float scrollSpeed = -1.5f;
         public float upForce = 200f;
         public int winsToWinLevel = 2;
@@ -53,6 +55,7 @@ namespace Scenes.FlappyRun.Scripts
             Countdown countdownInstance = countdown.GetComponent<Countdown>();
             countdownInstance.StartCountdown().Subscribe((c) =>
             {
+                instruction.SetActive(false);
                 _audioSource.Play();
                 Physics2D.gravity = new Vector2(0, -9.8f);
                 _roundStarted = true;
