@@ -13,7 +13,16 @@ namespace Core
         [NonSerialized] public bool gameOver;
 
         protected Player[] players;
-        protected Dictionary<int, GameObject> playerCharacterGameObjects = new Dictionary<int, GameObject>();
+        private readonly Dictionary<int, GameObject> _playerCharacterGameObjects = new Dictionary<int, GameObject>();
+
+        private void Awake()
+        {
+            // Debug purposes
+            if (GameState.Instance.GetAllPlayers().Length == 0)
+            {
+                GameState.Instance.AddPlayers(4);
+            }
+        }
 
         protected void Start()
         {
@@ -32,14 +41,14 @@ namespace Core
         {
             int playerId = player.Id;
 
-            if (playerCharacterGameObjects.ContainsKey(playerId))
+            if (_playerCharacterGameObjects.ContainsKey(playerId))
             {
-                playerCharacterGameObjects[playerId].SetActive(false);
+                _playerCharacterGameObjects[playerId].SetActive(false);
             }
 
-            playerCharacterGameObjects.Add(playerId,
+            _playerCharacterGameObjects.Add(playerId,
                 Instantiate(playerCharacterPrefab, position, Quaternion.identity, transform));
-            PlayerCharacter playerCharacter = playerCharacterGameObjects[playerId].GetComponent<PlayerCharacter>();
+            PlayerCharacter playerCharacter = _playerCharacterGameObjects[playerId].GetComponent<PlayerCharacter>();
             playerCharacter.ActivateSkin(player.activeSkinIndex);
             player.isDead = false;
             player.isReady = false;

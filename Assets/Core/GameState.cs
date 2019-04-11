@@ -80,5 +80,21 @@ namespace Core
                 }
             }
         }
+
+        public Player GetPlayerWithHighestScore()
+        {
+            Player[] players = GetAllPlayers();
+            Player player = players[0];
+
+            for (int i = 1; i < players.Length; i++)
+            {
+                if (player.globalScore < players[i].globalScore)
+                {
+                    player = players[i];
+                }
+            }
+
+            return player;
+        }
     }
 }
