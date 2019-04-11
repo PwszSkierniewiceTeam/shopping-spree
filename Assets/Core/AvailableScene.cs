@@ -5,6 +5,7 @@ namespace Core
         // Misc
         Menu,
         ScoreBoard,
+        GameOver,
 
         // Games
         FlappyRun,
