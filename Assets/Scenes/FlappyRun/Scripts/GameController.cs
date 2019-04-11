@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Core;
-using Shared.Prefabs.PlayerCharacter;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -65,10 +64,7 @@ namespace Scenes.FlappyRun.Scripts
             foreach (Player player in players)
             {
                 Player p = player;
-                p.playerCharacter.onCollisionEnter2DSub.Subscribe((Collision2D other) =>
-                {
-                    PlayerDied(p.playerCharacter.playerIndex);
-                });
+                p.playerCharacter.onCollisionEnter2DSub.Subscribe((Collision2D other) => { PlayerDied(p); });
             }
         }
 
@@ -118,9 +114,8 @@ namespace Scenes.FlappyRun.Scripts
             }
         }
 
-        private void PlayerDied(int playerIndex)
+        private void PlayerDied(Player player)
         {
-            Player player = players[playerIndex];
             player.isDead = true;
             CheckGameOver();
         }

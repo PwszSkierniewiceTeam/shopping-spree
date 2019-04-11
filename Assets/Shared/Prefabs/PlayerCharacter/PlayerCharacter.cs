@@ -11,8 +11,6 @@ namespace Shared.Prefabs.PlayerCharacter
 
         public AudioClip fartSound;
 
-        [NonSerialized] public int playerIndex;
-
         private AudioSource _audioSource;
         private GameObject[] _availableSkins;
         public int CurrentSkinIndex { get; private set; }

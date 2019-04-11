@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Shared.Prefabs.PlayerCharacter;
 using UnityEngine;
 
@@ -12,27 +13,37 @@ namespace Core
         [NonSerialized] public bool gameOver;
 
         protected Player[] players;
-        protected GameObject[] playerCharacterGameObjects;
+        protected Dictionary<int, GameObject> playerCharacterGameObjects = new Dictionary<int, GameObject>();
 
         protected void Start()
         {
             players = GameState.Instance.GetAllPlayers();
-            playerCharacterGameObjects = new GameObject[players.Length];
         }
 
         protected void SpawnPlayersCharacters(Vector2[] positions)
         {
             for (int i = 0; i < players.Length; i++)
             {
-                playerCharacterGameObjects[i] =
-                    Instantiate(playerCharacterPrefab, positions[i], Quaternion.identity, transform);
-                PlayerCharacter playerCharacter = playerCharacterGameObjects[i].GetComponent<PlayerCharacter>();
-                playerCharacter.ActivateSkin(players[i].activeSkinIndex);
-                playerCharacter.playerIndex = i;
-                players[i].isDead = false;
-                players[i].isReady = false;
-                players[i].playerCharacter = playerCharacter;
+                SpawnPlayerCharacter(players[i], positions[i]);
             }
+        }
+
+        protected void SpawnPlayerCharacter(Player player, Vector2 position)
+        {
+            int playerId = player.Id;
+
+            if (playerCharacterGameObjects.ContainsKey(playerId))
+            {
+                playerCharacterGameObjects[playerId].SetActive(false);
+            }
+
+            playerCharacterGameObjects.Add(playerId,
+                Instantiate(playerCharacterPrefab, position, Quaternion.identity, transform));
+            PlayerCharacter playerCharacter = playerCharacterGameObjects[playerId].GetComponent<PlayerCharacter>();
+            playerCharacter.ActivateSkin(player.activeSkinIndex);
+            player.isDead = false;
+            player.isReady = false;
+            player.playerCharacter = playerCharacter;
         }
     }
 }
