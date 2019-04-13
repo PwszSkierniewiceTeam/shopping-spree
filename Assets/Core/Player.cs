@@ -1,16 +1,37 @@
 using Shared.Prefabs.PlayerCharacter;
+using UniRx;
 
 namespace Core
 {
     public class Player
     {
-        public bool isDead = false;
+        public bool isDead
+        {
+            get { return _isDead; }
+            set
+            {
+                _isDead = value;
+                if (playerCharacter != null)
+                {
+                    if (_isDead)
+                    {
+                        playerCharacter.collider2D.enabled = false;
+                    }
+                    else
+                    {
+                        playerCharacter.collider2D.enabled = true;
+                    }
+                }
+            }
+        }
+
         public bool isReady = false;
         public int activeSkinIndex = 0;
         public int levelScore = 0;
         public int globalScore = 0;
         public PlayerCharacter playerCharacter;
 
+        private bool _isDead;
         private static int _id = 1;
         private readonly int _playerId;
         private readonly GamepadInput _gamepadInput;

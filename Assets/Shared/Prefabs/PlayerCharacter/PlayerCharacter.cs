@@ -8,6 +8,7 @@ namespace Shared.Prefabs.PlayerCharacter
     {
         [NonSerialized] public readonly Subject<Collision2D> onCollisionEnter2DSub = new Subject<Collision2D>();
         [NonSerialized] public Rigidbody2D rb2D;
+        [NonSerialized] public PolygonCollider2D collider2D;
 
         public AudioClip fartSound;
 
@@ -60,6 +61,7 @@ namespace Shared.Prefabs.PlayerCharacter
         private void Start()
         {
             rb2D = GetComponent<Rigidbody2D>();
+            collider2D = GetComponent<PolygonCollider2D>();
         }
 
         private void InitializeAudio()
