@@ -27,27 +27,27 @@ namespace Core
     {
         public int gamepadNumber;
 
-        private Dictionary<GamepadButton, string> buttons = new Dictionary<GamepadButton, string>();
-        private Dictionary<GamepadJoystick, string> joysticks = new Dictionary<GamepadJoystick, string>();
+        private readonly Dictionary<GamepadButton, string> _buttons = new Dictionary<GamepadButton, string>();
+        private readonly Dictionary<GamepadJoystick, string> _joysticks = new Dictionary<GamepadJoystick, string>();
 
         public bool IsUp(GamepadButton gamepadButton)
         {
-            return Input.GetButtonUp(buttons[gamepadButton]);
+            return Input.GetButtonUp(_buttons[gamepadButton]);
         }
 
         public bool IsDown(GamepadButton gamepadButton)
         {
-            return Input.GetButtonDown(buttons[gamepadButton]);
+            return Input.GetButtonDown(_buttons[gamepadButton]);
         }
 
         public bool IsPressed(GamepadButton gamepadButton)
         {
-            return Input.GetButton(buttons[gamepadButton]);
+            return Input.GetButton(_buttons[gamepadButton]);
         }
 
         public float GetJoystickAxis(GamepadJoystick gamepadJoystick)
         {
-            return Input.GetAxis(joysticks[gamepadJoystick]);
+            return Input.GetAxis(_joysticks[gamepadJoystick]);
         }
 
         public GamepadInput(int gamepadNumber)
@@ -58,8 +58,8 @@ namespace Core
         private void InitController(int number)
         {
             gamepadNumber = number;
-            buttons.Clear();
-            joysticks.Clear();
+            _buttons.Clear();
+            _joysticks.Clear();
             InitButtons(number);
             InitJoysticks(number);
         }
@@ -68,7 +68,7 @@ namespace Core
         {
             foreach (GamepadButton jb in Enum.GetValues(typeof(GamepadButton)))
             {
-                buttons.Add(jb, "J" + number + jb);
+                _buttons.Add(jb, "J" + number + jb);
             }
         }
 
@@ -76,7 +76,7 @@ namespace Core
         {
             foreach (GamepadJoystick gj in Enum.GetValues(typeof(GamepadJoystick)))
             {
-                joysticks.Add(gj, "J" + number + gj);
+                _joysticks.Add(gj, "J" + number + gj);
             }
         }
     }
