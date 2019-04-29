@@ -49,10 +49,13 @@ namespace Core
             _playerCharacterGameObjects.Add(playerId,
                 Instantiate(playerCharacterPrefab, position, Quaternion.identity, transform));
             PlayerCharacter playerCharacter = _playerCharacterGameObjects[playerId].GetComponent<PlayerCharacter>();
+            PlayerCharacterController playerCharacterController = _playerCharacterGameObjects[playerId].GetComponent<PlayerCharacterController>();
             playerCharacter.ActivateSkin(player.activeSkinIndex);
             player.isDead = false;
             player.isReady = false;
             player.playerCharacter = playerCharacter;
+            player.characterController = playerCharacterController;
+            player.characterController.SetInputSource(player.GamepadInput);
         }
     }
 }

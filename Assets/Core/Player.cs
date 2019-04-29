@@ -30,6 +30,7 @@ namespace Core
         public int levelScore = 0;
         public int globalScore = 0;
         public PlayerCharacter playerCharacter;
+        public PlayerCharacterController characterController; 
 
         private bool _isDead;
         private static int _id = 1;

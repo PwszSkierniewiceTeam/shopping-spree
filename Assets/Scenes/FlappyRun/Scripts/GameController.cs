@@ -11,7 +11,7 @@ namespace Scenes.FlappyRun.Scripts
         public static GameController instance;
 
         public GameObject instruction;
-        
+
         public float scrollSpeed = -1.5f;
         public float upForce = 200f;
         public int winsToWinLevel = 2;
@@ -108,7 +108,7 @@ namespace Scenes.FlappyRun.Scripts
                     player.globalScore += 1;
                     GameState.Instance.lastWinner = player;
                     ClearLevelScores();
-                    SceneManager.LoadScene((int) AvailableScene.ScoreBoard);
+                    SceneManager.LoadScene((int)AvailableScene.ScoreBoard);
                 }
                 else
                 {
