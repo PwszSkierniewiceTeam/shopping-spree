@@ -41,7 +41,7 @@ public class PlayerCharacterController : MonoBehaviour
     {
         horizontal = gamepadInput.GetJoystickAxis(GamepadJoystick.LeftJoystickHorizontal);
 
-        if (gamepadInput.IsDown(GamepadButton.ButtonX) )
+        if (gamepadInput.IsDown(GamepadButton.ButtonA) )
         {
             jump = true;
         }
