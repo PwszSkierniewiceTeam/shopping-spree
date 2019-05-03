@@ -26,6 +26,7 @@ public class PlayerCharacterController : MonoBehaviour
     public bool CanBeAirControlled { get; set; } = true;
     public bool CanCrouch { get; set; } = false;
 
+    private bool allowCharacterControll = false;
     private bool crouch = false;
     private float groundedRadius = .1f;
     private float ceilingRadius = .1f;
@@ -39,20 +40,23 @@ public class PlayerCharacterController : MonoBehaviour
 
     private void Update()
     {
-        horizontal = gamepadInput.GetJoystickAxis(GamepadJoystick.LeftJoystickHorizontal);
+        if (allowCharacterControll)
+        {
+            horizontal = gamepadInput.GetJoystickAxis(GamepadJoystick.LeftJoystickHorizontal);
 
-        if (gamepadInput.IsDown(GamepadButton.ButtonA) )
-        {
-            jump = true;
-        }
+            if (gamepadInput.IsDown(GamepadButton.ButtonA))
+            {
+                jump = true;
+            }
 
-        if (gamepadInput.IsDown(GamepadButton.ButtonB))
-        {
-            crouch = true;
-        }
-        else if (gamepadInput.IsUp(GamepadButton.ButtonB))
-        {
-            crouch = false;
+            if (gamepadInput.IsDown(GamepadButton.ButtonB))
+            {
+                crouch = true;
+            }
+            else if (gamepadInput.IsUp(GamepadButton.ButtonB))
+            {
+                crouch = false;
+            }
         }
     }
 
@@ -64,6 +68,7 @@ public class PlayerCharacterController : MonoBehaviour
     public void SetInputSource(GamepadInput gamepadInput)
     {
         this.gamepadInput = gamepadInput;
+        allowCharacterControll = true;
     }
 
 
