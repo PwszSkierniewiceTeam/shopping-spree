@@ -223,7 +223,7 @@ MonoBehaviour:
   countdown: {fileID: 1772126947}
   instruction: {fileID: 643524717}
   light: {fileID: 943320807}
-  winsToWinLevel: 2
+  winsToWinLevel: 1
   rb2D: {fileID: 0}
   _roundStarted: 0
 --- !u!4 &457293476
