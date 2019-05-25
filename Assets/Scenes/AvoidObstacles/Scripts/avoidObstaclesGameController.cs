@@ -70,7 +70,7 @@ public class avoidObstaclesGameController : BaseGameController
                 player.characterController.CanCrouch = true;
             }
             //platform.GetComponent<platform>().platforms_moving = true;
-            platformSpot.GetComponent<platformSpot>().platforms_start = true;
+            //platformSpot.GetComponent<platformSpot>().platforms_start = true;
             //platform.GetComponent<platform>().speed = 4f;
         });
     }
