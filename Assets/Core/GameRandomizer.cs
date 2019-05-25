@@ -15,8 +15,9 @@ namespace Core
         {
             _availableGames = new List<int>
             {
-                (int) AvailableScene.FlappyRun,
-                (int) AvailableScene.RaceToTheCashRegister
+                //(int) AvailableScene.FlappyRun,
+                //(int) AvailableScene.RaceToTheCashRegister
+                (int) AvailableScene.AvoidObstacles
             };
         }
 
