@@ -54,7 +54,7 @@ public class CheckLight : MonoBehaviour
 
     private void setTimer1()
     {
-        timer1 = Random.Range(4, 7);
+        timer1 = Random.Range(1, 3);
     }
 
     private void stopLight()
