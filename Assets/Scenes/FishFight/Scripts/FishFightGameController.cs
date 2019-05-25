@@ -13,6 +13,7 @@ public class FishFightGameController : BaseGameController
     public int winsToWinLevel = 2;
     private bool _roundStarted;
     public GameObject instruction;
+    public GameObject throwable;
 
     private void Awake()
     {
@@ -58,6 +59,8 @@ public class FishFightGameController : BaseGameController
                 player.characterController.CanMove = true;
                 player.characterController.CanJump = true;
                 player.characterController.CanCrouch = true;
+                player.characterController.CanThrowStuff = true;
+                player.characterController.ThrowableObject = throwable;
             }
         });
     }

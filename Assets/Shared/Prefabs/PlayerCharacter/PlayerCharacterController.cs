@@ -1,6 +1,8 @@
 ﻿using Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerCharacterController : MonoBehaviour
@@ -19,12 +21,15 @@ public class PlayerCharacterController : MonoBehaviour
     private Rigidbody2D playerRigidbody;
     [SerializeField]
     private Collider2D crouchDisableCollider;
+    [SerializeField]
+    private float throwForce = 800f;
 
     public bool CanMove { get; set; } = false;
     public bool CanJump { get; set; } = false;
     public bool CanDoubleJump { get; set; } = true;
     public bool CanBeAirControlled { get; set; } = true;
     public bool CanCrouch { get; set; } = false;
+    public bool CanThrowStuff { get; set; } = false;
 
     private bool allowCharacterControll = false;
     private bool crouch = false;
@@ -37,9 +42,19 @@ public class PlayerCharacterController : MonoBehaviour
     private bool facingRight = true;
     private float horizontal;
     private bool jump = false;
-
+    private Vector3 direction = new Vector3();
+    private bool throwObject = false;
+    public GameObject ThrowableObject { get; set; }
+    private List<GameObject> throwables = new List<GameObject>();
     private void Update()
     {
+        var thr = throwables.Where(t => !t.GetComponent<Rigidbody2D>().IsAwake()).ToList();
+        thr.ForEach(t =>
+        {
+            throwables.Remove(t);
+            Destroy(t);
+        });
+
         if (allowCharacterControll)
         {
             horizontal = gamepadInput.GetJoystickAxis(GamepadJoystick.LeftJoystickHorizontal);
@@ -57,12 +72,30 @@ public class PlayerCharacterController : MonoBehaviour
             {
                 crouch = false;
             }
+
+            direction.Set(gamepadInput.GetJoystickAxis(GamepadJoystick.RightJoystickHorizontal), gamepadInput.GetJoystickAxis(GamepadJoystick.RightJoystickVertical), 0);
+
+            if (gamepadInput.IsDown(GamepadButton.RBumper))
+            {
+                throwObject = true;
+            }
         }
+    }
+
+    private void launchObject()
+    {
+        var throwable = Instantiate(ThrowableObject, transform.position, Quaternion.identity);
+        throwables.Add(throwable);
+        throwable.GetComponent<Rigidbody2D>().AddForce(direction * throwForce );
     }
 
     void FixedUpdate()
     {
         Move(horizontal, MovementSpeed, crouch);
+        if (CanThrowStuff && ThrowableObject != null)
+        {
+            launchObject();
+        }
     }
 
     public void SetInputSource(GamepadInput gamepadInput)
