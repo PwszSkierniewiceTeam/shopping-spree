@@ -22,7 +22,7 @@ public class enemy_Spot : MonoBehaviour
         if (timer <= 0)
         {
             Vector3 enemyPos = new Vector3(Random.Range(-6f, 4f), transform.position.y,  transform.position.z);
-            enemyNo = Random.Range(0, 1);
+            enemyNo = Random.Range(0, 2);
             Instantiate(enemies[enemyNo], enemyPos, transform.rotation);
             timer = delayTimer;
         }
