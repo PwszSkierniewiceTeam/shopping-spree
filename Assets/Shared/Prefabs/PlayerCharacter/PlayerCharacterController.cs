@@ -1,4 +1,5 @@
 ﻿using Core;
+using Shared.Prefabs.PlayerCharacter;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,7 @@ public class PlayerCharacterController : MonoBehaviour
     public bool CanCrouch { get; set; } = false;
     private bool allowCharacterControll = false;
     
+
     private bool crouch = false;
     private float groundedRadius = .1f;
     private float ceilingRadius = .1f;
@@ -37,12 +39,16 @@ public class PlayerCharacterController : MonoBehaviour
     private bool facingRight = true;
     private float horizontal;
     private bool jump = false;
-        
+
+
     private void Update()
     {
+        
         if (allowCharacterControll)
+
         { 
             horizontal = gamepadInput.GetJoystickAxis(GamepadJoystick.LeftJoystickHorizontal);
+
 
 
             if (gamepadInput.IsDown(GamepadButton.ButtonA))
