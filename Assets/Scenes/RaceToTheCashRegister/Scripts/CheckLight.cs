@@ -31,7 +31,7 @@ public class CheckLight : MonoBehaviour
         if (timer1 > 0)
         {
             timer1 -= 5 * Time.deltaTime;
-            x = Random.Range(3, 6);
+            x = Random.Range(2, 6);
         }
 
         if (timer1 <= 0 )
@@ -54,7 +54,7 @@ public class CheckLight : MonoBehaviour
 
     private void setTimer1()
     {
-        timer1 = Random.Range(1, 3);
+        timer1 = Random.Range(2, 5);
     }
 
     private void stopLight()

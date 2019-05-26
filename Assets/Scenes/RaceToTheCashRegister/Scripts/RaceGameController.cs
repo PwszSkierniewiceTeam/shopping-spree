@@ -82,10 +82,10 @@ namespace Scenes.RaceToTheCashRegister.Scripts
                         player.goRight = true;
                     }
 
-                    if (_lightAnimator.GetBool("IsClosed"))
+                    if (_lightAnimator.GetBool("IsClosed") && !CheckBack(player))
                     {
                         player.firstX = rb2D.position.x;
-                        rb2D.AddForce(Vector2.left * 100);
+                        rb2D.AddForce(Vector2.left * 150);
                         player.moving = true;
                     }
                 }
@@ -100,7 +100,7 @@ namespace Scenes.RaceToTheCashRegister.Scripts
                         player.goRight = false;
                     }
 
-                    if (player.curentX < player.firstX - moveSpeed && !player.goRight)
+                    if (CheckBack(player) && !player.goRight || player.curentX < player.firstX - 2 * moveSpeed && !player.goRight)
                     {
                         rb2D.velocity = Vector2.zero;
                         player.moving = false;
@@ -111,6 +111,13 @@ namespace Scenes.RaceToTheCashRegister.Scripts
             }
         }
 
+        private bool CheckBack(Player player)
+        {
+            if (player.playerCharacter.rb2D.position.x <= -9)
+                return true;
+            else
+                return false;
+        }
         private void CheckChangeLight()
         {
             if (_lightAnimator.GetBool("IsOpen") || _lightAnimator.GetBool("IsClosed"))
