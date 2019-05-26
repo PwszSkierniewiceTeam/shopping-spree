@@ -24,8 +24,8 @@ public class platformsSpot : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
-                Vector3 platformPos = new Vector3(Random.Range(-6f, 4f), transform.position.y, transform.position.z);
-                paltformNo = Random.Range(0, 4);
+                Vector3 platformPos = new Vector3(Random.Range(-6f, 6f), transform.position.y, transform.position.z);
+                paltformNo = Random.Range(0, 5);
                 Instantiate(platforms[paltformNo], platformPos, transform.rotation);
                 timer = delayTimer;
             }

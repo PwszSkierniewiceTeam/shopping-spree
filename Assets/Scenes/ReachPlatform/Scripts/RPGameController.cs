@@ -44,10 +44,10 @@ public class RPGameController : BaseGameController
         base.Start();
         SpawnPlayersCharacters(new[]
             {
-                    new Vector2(-3f, 0),
-                    new Vector2(-4f, 0),
-                    new Vector2(-5f, 0),
-                    new Vector2(-6f, 0)
+                    new Vector2(-3f, -4),
+                    new Vector2(-4f, -4),
+                    new Vector2(-5f, -4),
+                    new Vector2(-6f, -4)
                 }
         );
         WatchForCollisions();
