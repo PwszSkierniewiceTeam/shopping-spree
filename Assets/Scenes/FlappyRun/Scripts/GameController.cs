@@ -74,6 +74,11 @@ namespace Scenes.FlappyRun.Scripts
                         PlayerDied(p);
                     }
                 });
+
+                p.playerCharacter.onTriggerEnter2DSub.Subscribe((Collider2D other) =>
+                {
+                    p.playerCharacter.rb2D.AddForce(new Vector2(0, -upForce));
+                });
             }
         }
 

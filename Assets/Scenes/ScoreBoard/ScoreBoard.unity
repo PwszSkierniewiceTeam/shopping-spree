@@ -280,11 +280,11 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 125
+  m_fontSize: 100
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 125
+  m_fontSizeMin: 100
   m_fontSizeMax: 180
   m_fontStyle: 0
   m_textAlignment: 258

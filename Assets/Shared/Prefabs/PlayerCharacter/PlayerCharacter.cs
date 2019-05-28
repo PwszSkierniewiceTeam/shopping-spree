@@ -7,6 +7,9 @@ namespace Shared.Prefabs.PlayerCharacter
     public class PlayerCharacter : MonoBehaviour
     {
         [NonSerialized] public readonly Subject<Collision2D> onCollisionEnter2DSub = new Subject<Collision2D>();
+        [NonSerialized] public readonly Subject<Collider2D> onTriggerEnter2DSub = new Subject<Collider2D>();
+        [NonSerialized] public readonly Subject<Collider2D> onTriggerStay2DSub = new Subject<Collider2D>();
+        [NonSerialized] public readonly Subject<Collider2D> onTriggerExit2DSub = new Subject<Collider2D>();
         [NonSerialized] public Rigidbody2D rb2D;
         [NonSerialized] public PolygonCollider2D collider2D;
 
@@ -51,6 +54,21 @@ namespace Shared.Prefabs.PlayerCharacter
             // select first skin by default
             CurrentSkinIndex = 0;
             CurrentSkinGameObject.SetActive(true);
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            onTriggerExit2DSub.OnNext(other);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            onTriggerEnter2DSub.OnNext(other);
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            onTriggerStay2DSub.OnNext(other);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
