@@ -34,7 +34,7 @@ namespace Scenes.FlappyRun.Scripts
             // debug purposes
             if (GameState.Instance.GetAllPlayers().Length == 0)
             {
-                GameState.Instance.AddPlayers(3);
+                GameState.Instance.AddPlayers(2);
             }
         }
 
@@ -67,7 +67,13 @@ namespace Scenes.FlappyRun.Scripts
             foreach (Player player in players)
             {
                 Player p = player;
-                p.playerCharacter.onCollisionEnter2DSub.Subscribe((Collision2D other) => { PlayerDied(p); });
+                p.playerCharacter.onCollisionEnter2DSub.Subscribe((Collision2D other) =>
+                {
+                    if (!p.isDead)
+                    {
+                        PlayerDied(p);
+                    }
+                });
             }
         }
 
@@ -108,7 +114,7 @@ namespace Scenes.FlappyRun.Scripts
                     player.globalScore += 1;
                     GameState.Instance.lastWinner = player;
                     ClearLevelScores();
-                    SceneManager.LoadScene((int)AvailableScene.ScoreBoard);
+                    SceneManager.LoadScene((int) AvailableScene.ScoreBoard);
                 }
                 else
                 {
