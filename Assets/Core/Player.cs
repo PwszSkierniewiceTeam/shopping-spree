@@ -16,6 +16,7 @@ namespace Core
                     if (_isDead)
                     {
                         playerCharacter.collider2D.enabled = false;
+                        playerCharacter.gameObject.SetActive(false);
                     }
                     else
                     {

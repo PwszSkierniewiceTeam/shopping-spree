@@ -34,7 +34,7 @@ namespace Scenes.FlappyRun.Scripts
             // debug purposes
             if (GameState.Instance.GetAllPlayers().Length == 0)
             {
-                GameState.Instance.AddPlayers(2);
+                GameState.Instance.AddPlayers(3);
             }
         }
 
