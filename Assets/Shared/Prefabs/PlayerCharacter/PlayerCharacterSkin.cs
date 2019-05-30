@@ -40,8 +40,7 @@ namespace Shared.Prefabs.PlayerCharacter
                 if(timer <= 0)
                     playerCharacter.gameObject.SetActive(false);
             }
-
-
+  
 
             if (raceGameController)
             {
@@ -77,15 +76,17 @@ namespace Shared.Prefabs.PlayerCharacter
 
             if(scoreBoardController)
             {
-                //Debug.Log("SSSSSSSSSSSSSSSSSSSCCCCCCCCCCCCC");
-                
+               if(_animator.GetBool("Cheer"))
+                {
+                    ClearBool();
+                    _animator.SetBool("Cheer", true);
+                }
 
-              //   if (GameState.Instance.lastWinner != null && GameState.Instance.lastWinner.Id == player.Id )
-              //      _animator.SetBool("Cheer", true);
-              //  else
-              //      _animator.SetBool("Lose", true);
-
-
+                if (_animator.GetBool("Lose"))
+                {
+                    ClearBool();
+                    _animator.SetBool("Lose", true);
+                }
             }
 
 
