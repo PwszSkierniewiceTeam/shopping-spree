@@ -16,6 +16,7 @@ namespace Shared.Prefabs.PlayerCharacter
         private GameController flappyController;
         private ScoreBoardController scoreBoardController;
         private Player player;
+        private float timer { get; set; } = 1;
 
 
         private void Awake()
@@ -30,6 +31,17 @@ namespace Shared.Prefabs.PlayerCharacter
 
         private void Update()
         {
+            if(_animator.GetBool("Dead"))
+            {
+                Debug.Log("umieram");
+                ClearBool();
+                _animator.SetBool("Dead", true);
+                timer -= Time.deltaTime;
+                if(timer <= 0)
+                    playerCharacter.gameObject.SetActive(false);
+            }
+
+
 
             if (raceGameController)
             {

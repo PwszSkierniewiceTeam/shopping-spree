@@ -15,8 +15,8 @@ namespace Core
                 {
                     if (_isDead)
                     {
+                        playerCharacter.CurrentSkin._animator.SetBool("Dead", true);
                         playerCharacter.collider2D.enabled = false;
-                        playerCharacter.gameObject.SetActive(false);
                     }
                     else
                     {
