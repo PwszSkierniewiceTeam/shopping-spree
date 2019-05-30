@@ -33,7 +33,6 @@ namespace Shared.Prefabs.PlayerCharacter
         {
             if(_animator.GetBool("Dead"))
             {
-                Debug.Log("umieram");
                 ClearBool();
                 _animator.SetBool("Dead", true);
                 timer -= Time.deltaTime;
