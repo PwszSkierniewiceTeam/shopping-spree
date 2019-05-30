@@ -110,6 +110,7 @@ namespace Shared.Prefabs.PlayerCharacter
             _animator.SetBool("Fly", false);
             _animator.SetBool("Cheer", false);
             _animator.SetBool("Lose", false);
+            _animator.SetBool("Dead", false);
         }
     }
 }
