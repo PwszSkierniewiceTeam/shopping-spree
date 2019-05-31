@@ -22,7 +22,7 @@ public class PlayerCharacterController : MonoBehaviour
     [SerializeField]
     private Collider2D crouchDisableCollider;
     [SerializeField]
-    private float throwForce = 800f;
+    private float throwForce = 2000f;
 
     public bool CanMove { get; set; } = false;
     public bool CanJump { get; set; } = false;
@@ -30,6 +30,8 @@ public class PlayerCharacterController : MonoBehaviour
     public bool CanBeAirControlled { get; set; } = true;
     public bool CanCrouch { get; set; } = false;
     public bool CanThrowStuff { get; set; } = false;
+    public bool CanThrowMoreThanOneThing { get; set; } = false;
+    public bool DestroyThrowableAfterItStops { get; set; } = true;
 
     private bool allowCharacterControll = false;
     private bool crouch = false;
@@ -45,15 +47,18 @@ public class PlayerCharacterController : MonoBehaviour
     private Vector3 direction = new Vector3();
     private bool throwObject = false;
     public GameObject ThrowableObject { get; set; }
-    private List<GameObject> throwables = new List<GameObject>();
+    public List<GameObject> Throwables { get; private set; } = new List<GameObject>();
     private void Update()
     {
-        var thr = throwables.Where(t => !t.GetComponent<Rigidbody2D>().IsAwake()).ToList();
-        thr.ForEach(t =>
+        if (DestroyThrowableAfterItStops && Throwables.Any())
         {
-            throwables.Remove(t);
-            Destroy(t);
-        });
+            var thr = Throwables.Where(t => !t.GetComponent<Rigidbody2D>().IsAwake()).ToList();
+            thr.ForEach(t =>
+            {
+                Throwables.Remove(t);
+                Destroy(t);
+            });
+        }
 
         if (allowCharacterControll)
         {
@@ -84,15 +89,19 @@ public class PlayerCharacterController : MonoBehaviour
 
     private void launchObject()
     {
+        if (!CanThrowMoreThanOneThing && Throwables.Any())
+        {
+            return;
+        }
         var throwable = Instantiate(ThrowableObject, transform.position, Quaternion.identity);
-        throwables.Add(throwable);
-        throwable.GetComponent<Rigidbody2D>().AddForce(direction * throwForce );
+        Throwables.Add(throwable);
+        throwable.GetComponent<Rigidbody2D>().AddForce(direction * throwForce);
     }
 
     void FixedUpdate()
     {
         Move(horizontal, MovementSpeed, crouch);
-        if (CanThrowStuff && ThrowableObject != null)
+        if (CanThrowStuff && throwObject && ThrowableObject != null)
         {
             launchObject();
         }
