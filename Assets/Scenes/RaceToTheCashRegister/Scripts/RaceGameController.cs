@@ -13,8 +13,9 @@ namespace Scenes.RaceToTheCashRegister.Scripts
         public GameObject light;
         public int winsToWinLevel = 2;
 
-        private int moveSpeed = 1;
+        private int moveSpeed = 2;
         private bool x;
+        private bool moved = true;
         public Rigidbody2D rb2D;
         private Animator _lightAnimator;
         private AudioSource _audioSource;
@@ -35,7 +36,7 @@ namespace Scenes.RaceToTheCashRegister.Scripts
             // debug purposes
             if (GameState.Instance.GetAllPlayers().Length == 0)
             {
-                GameState.Instance.AddPlayers(2);
+                GameState.Instance.AddPlayers(4);
             }
 
             light.SetActive(false);
@@ -48,7 +49,7 @@ namespace Scenes.RaceToTheCashRegister.Scripts
                 {
                     new Vector2(-7f, 0.75f),
                     new Vector2(-7f, -0.75f),
-                    new Vector2(-7f, 2.25f),
+                    new Vector2(-7f, -3.75f),
                     new Vector2(-7f, -2.25f)
                 }
             );
@@ -64,29 +65,31 @@ namespace Scenes.RaceToTheCashRegister.Scripts
             });
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             CheckChangeLight();
-
+            
             foreach (Player player in players)
             {
                 rb2D = player.playerCharacter.rb2D;
 
-                if (player.GamepadInput.IsDown(GamepadButton.ButtonX) && !player.moving && x)
+                if (player.GamepadInput.IsDown(GamepadButton.ButtonX) && !player.moving && x && moved)
                 {
                     if (_lightAnimator.GetBool("IsOpen"))
                     {
                         player.firstX = rb2D.position.x;
-                        rb2D.AddForce(Vector2.right * 100);
+                        rb2D.AddForce(Vector2.right * 150);
                         player.moving = true;
                         player.goRight = true;
+                        moved = false;
                     }
 
                     if (_lightAnimator.GetBool("IsClosed") && !CheckBack(player))
                     {
                         player.firstX = rb2D.position.x;
-                        rb2D.AddForce(Vector2.left * 150);
+                        rb2D.AddForce(Vector2.left * 180);
                         player.moving = true;
+                        moved = false;
                     }
                 }
 
@@ -100,7 +103,7 @@ namespace Scenes.RaceToTheCashRegister.Scripts
                         player.goRight = false;
                     }
 
-                    if (CheckBack(player) && !player.goRight || player.curentX < player.firstX - 2 * moveSpeed && !player.goRight)
+                    if (CheckBack(player) && !player.goRight || player.curentX < player.firstX - 1.5 * moveSpeed && !player.goRight)
                     {
                         rb2D.velocity = Vector2.zero;
                         player.moving = false;
@@ -123,7 +126,11 @@ namespace Scenes.RaceToTheCashRegister.Scripts
             if (_lightAnimator.GetBool("IsOpen") || _lightAnimator.GetBool("IsClosed"))
                 x = true;
             else
+            {
                 x = false;
+                moved = true;
+            }
+                
         }
 
         private void ClearLevelScores()

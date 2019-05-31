@@ -8,7 +8,7 @@ public class CheckLight : MonoBehaviour
     public bool _isClosed { get; set; } = false;
     private float timer1, timer2 = 2;
     private int x ;
-    private Animator light;
+    private new Animator light;
     public static CheckLight instance;
     public RaceGameController race;
 
@@ -25,17 +25,18 @@ public class CheckLight : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
         if (timer1 > 0)
         {
             timer1 -= 5 * Time.deltaTime;
-            x = Random.Range(2, 6);
+            x = Random.Range(3, 7);
         }
 
         if (timer1 <= 0 )
-        { 
+        {
+           
             if (x % 2 == 1)
             {
                 light.SetBool("IsOpen", true);
@@ -54,19 +55,19 @@ public class CheckLight : MonoBehaviour
 
     private void setTimer1()
     {
-        timer1 = Random.Range(2, 5);
+        timer1 = Random.Range(3, 5);
     }
 
     private void stopLight()
     {
         if (timer2 > 0)
-            timer2 -= 3 * Time.deltaTime;
+            timer2 -=  Time.deltaTime;
         else
         {
             setTimer1();
             light.SetBool("IsOpen", false);
             light.SetBool("IsClosed", false);
-            timer2 = 1.8f;
+            timer2 = 0.9f;
         }
     }
 }
