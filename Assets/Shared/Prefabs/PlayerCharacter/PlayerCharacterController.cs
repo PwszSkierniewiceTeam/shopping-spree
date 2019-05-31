@@ -22,7 +22,7 @@ public class PlayerCharacterController : MonoBehaviour
     [SerializeField]
     private Collider2D crouchDisableCollider;
     [SerializeField]
-    private float throwForce = 2000f;
+    private float throwForce = 1500f;
 
     public bool CanMove { get; set; } = false;
     public bool CanJump { get; set; } = false;
@@ -32,6 +32,7 @@ public class PlayerCharacterController : MonoBehaviour
     public bool CanThrowStuff { get; set; } = false;
     public bool CanThrowMoreThanOneThing { get; set; } = false;
     public bool DestroyThrowableAfterItStops { get; set; } = true;
+    public bool IsThrowPowerFromButtonHold { get; set; } = true;
 
     private bool allowCharacterControll = false;
     private bool crouch = false;
@@ -46,6 +47,7 @@ public class PlayerCharacterController : MonoBehaviour
     private bool jump = false;
     private Vector3 direction = new Vector3();
     private bool throwObject = false;
+    private float power;
     public GameObject ThrowableObject { get; set; }
     public List<GameObject> Throwables { get; private set; } = new List<GameObject>();
     private void Update()
@@ -82,11 +84,39 @@ public class PlayerCharacterController : MonoBehaviour
 
             if (gamepadInput.IsDown(GamepadButton.RBumper))
             {
+                if (IsThrowPowerFromButtonHold)
+                {
+                    StartGatheringPower();
+                }
+            }
+
+            if (gamepadInput.IsPressed(GamepadButton.RBumper))
+            {
+                if (IsThrowPowerFromButtonHold)
+                {
+                    ContinueGatheringPower();
+                }
+            }
+
+            if (gamepadInput.IsUp(GamepadButton.RBumper))
+            {
+                if (!IsThrowPowerFromButtonHold)
+                {
+                    power = throwForce;
+                }
                 throwObject = true;
             }
         }
     }
+    private void ContinueGatheringPower()
+    {
+        power += 10;
+    }
 
+    private void StartGatheringPower()
+    {
+        power = 1000;
+    }
     private void launchObject()
     {
         if (!CanThrowMoreThanOneThing && Throwables.Any())
@@ -95,7 +125,7 @@ public class PlayerCharacterController : MonoBehaviour
         }
         var throwable = Instantiate(ThrowableObject, transform.position, Quaternion.identity);
         Throwables.Add(throwable);
-        throwable.GetComponent<Rigidbody2D>().AddForce(direction * throwForce);
+        throwable.GetComponent<Rigidbody2D>().AddForce(direction * power);
     }
 
     void FixedUpdate()
@@ -104,6 +134,7 @@ public class PlayerCharacterController : MonoBehaviour
         if (CanThrowStuff && throwObject && ThrowableObject != null)
         {
             launchObject();
+            throwObject = false;
         }
     }
 

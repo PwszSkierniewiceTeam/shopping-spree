@@ -61,6 +61,7 @@ public class FishFightGameController : BaseGameController
                 player.characterController.CanCrouch = true;
                 player.characterController.CanThrowStuff = true;
                 player.characterController.ThrowableObject = throwable;
+                player.characterController.CanThrowMoreThanOneThing = true;
             }
         });
     }
