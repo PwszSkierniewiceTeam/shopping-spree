@@ -68,6 +68,12 @@ namespace Scenes.ScoreBoard.Scripts
             {
                 Player player = players[i];
 
+                //Animation
+                if(GameState.Instance.lastWinner.Id == players[i].Id)
+                    player.playerCharacter.CurrentSkin._animator.SetBool("Cheer", true);
+                else
+                    player.playerCharacter.CurrentSkin._animator.SetBool("Lose", true);
+
                 if (player.GamepadInput.IsUp(GamepadButton.ButtonA) && !player.isReady)
                 {
                     player.isReady = true;

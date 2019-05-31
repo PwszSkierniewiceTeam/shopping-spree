@@ -22,7 +22,7 @@ EditorBuildSettings:
     guid: e7a6d5921dd6a0b49b26a70e0b2fd6d3
   - enabled: 1
     path: Assets/Scenes/AvoidObstacles/AvoidObstacles.unity
-    guid: 910c196902cc5544d978f62cc1832efa
+    guid: 90218c79f434ffd48b816617810eebe7
   - enabled: 1
     path: Assets/Scenes/CarpCurling/CarpCurling.unity
     guid: 8cd58ad835fdc864d9a750e8537ac444
@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TvFight/TvFight.unity
     guid: 8b63bd47eff14244590cdc36c1cbb04b
+  - enabled: 1
+    path: Assets/Scenes/MainMenu/mainMenu.unity
+    guid: 4dbc275f2ad75eb489b5eca05d8acebb
   m_configObjects: {}

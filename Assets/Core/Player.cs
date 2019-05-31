@@ -15,6 +15,7 @@ namespace Core
                 {
                     if (_isDead)
                     {
+                        playerCharacter.CurrentSkin._animator.SetBool("Dead", true);
                         playerCharacter.collider2D.enabled = false;
                     }
                     else
@@ -30,7 +31,9 @@ namespace Core
         public int levelScore = 0;
         public int globalScore = 0;
         public PlayerCharacter playerCharacter;
-        public PlayerCharacterController characterController; 
+        public PlayerCharacterController characterController;
+        public bool moving, goRight; 
+        public float firstX, curentX;
 
         private bool _isDead;
         private static int _id = 1;

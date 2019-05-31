@@ -1,5 +1,6 @@
 ﻿using Core;
 using System;
+using Shared.Prefabs.PlayerCharacter;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,7 @@ public class PlayerCharacterController : MonoBehaviour
     private bool facingRight = true;
     private float horizontal;
     private bool jump = false;
+
     private Vector3 direction = new Vector3();
     private bool throwObject = false;
     private float power;
@@ -63,8 +65,11 @@ public class PlayerCharacterController : MonoBehaviour
         }
 
         if (allowCharacterControll)
-        {
+
+        { 
             horizontal = gamepadInput.GetJoystickAxis(GamepadJoystick.LeftJoystickHorizontal);
+
+
 
             if (gamepadInput.IsDown(GamepadButton.ButtonA))
             {
