@@ -11,43 +11,63 @@ namespace Shared.Prefabs.PlayerCharacter
         public Animator _animator;
         
         private PlayerCharacter playerCharacter;
+        private PlayerCharacterController playerCharacterController;
         private RaceGameController raceGameController;
         private Rigidbody2D rb2D;
         private GameController flappyController;
         private ScoreBoardController scoreBoardController;
+        private FishFightGameController fishFightGameController;
+        private avoidObstaclesGameController avoidObstaclesGameController;
         private Player player;
         private float timer { get; set; } = 1;
 
 
         private void Awake()
         {
+            playerCharacterController = FindObjectOfType<PlayerCharacterController>();
             playerCharacter = FindObjectOfType<PlayerCharacter>();
             raceGameController = FindObjectOfType<RaceGameController>();
             flappyController = FindObjectOfType<GameController>();
             scoreBoardController = FindObjectOfType<ScoreBoardController>();
-            
-            ClearBool();
+            fishFightGameController = FindObjectOfType<FishFightGameController>();
+            avoidObstaclesGameController = FindObjectOfType<avoidObstaclesGameController>();
+
+            ClearParametr();
         }
 
         private void Update()
         {
             if(_animator.GetBool("Dead"))
             {
-                ClearBool();
-                _animator.SetBool("Dead", true);
+                SetAnimatorBool("Dead");
                 timer -= Time.deltaTime;
                 if(timer <= 0)
                     playerCharacter.gameObject.SetActive(false);
             }
-  
+            
+            if(avoidObstaclesGameController)
+            {
+                rb2D = playerCharacter.rb2D;
+                if (rb2D.velocity.y > 0.1f)
+                {
+                    SetAnimatorBool("Jump");
+                }
+                if(rb2D.velocity.y <= 0.1f)
+                {
+                    SetAnimatorBool("Fly");
+                }
+                if (playerCharacterController.isGrounded)
+                {
+                    ClearParametr();
+                    _animator.SetFloat("Speed", 1f);
+                }
+
+            }
 
             if (raceGameController)
             {
                 rb2D = playerCharacter.rb2D;
                 SetFly(rb2D.velocity.x);
-                
-
-                //Debug.Log("RACE***RACE***RACE***RACE");
                 
                 _animator.SetFloat("Speed", rb2D.velocity.x);
             }
@@ -55,40 +75,38 @@ namespace Shared.Prefabs.PlayerCharacter
 
             if (flappyController)
             {
-                //Debug.Log("FLLLAAAPPPPYY");
                 rb2D = playerCharacter.rb2D;
-
 
                 if (rb2D.velocity.y < 0)
                 {
-                    _animator.SetBool("Fart", false);
-                    _animator.SetBool("Fly", true);
+                    SetAnimatorBool("Fly");
                 }
 
                 else if (rb2D.velocity.y > 0)
                 {
-                    _animator.SetBool("Fly", false);
-                    _animator.SetBool("Fart", true);
+                    SetAnimatorBool("Fart");
                 }
-            }
-                
+            }     
 
             if(scoreBoardController)
             {
                if(_animator.GetBool("Cheer"))
                 {
-                    ClearBool();
-                    _animator.SetBool("Cheer", true);
+                    SetAnimatorBool("Cheer");
                 }
 
                 if (_animator.GetBool("Lose"))
                 {
-                    ClearBool();
-                    _animator.SetBool("Lose", true);
+                    SetAnimatorBool("Lose");
                 }
             }
 
+        }
 
+        private void SetAnimatorBool(string s)
+        {
+            ClearParametr();
+            _animator.SetBool(s, true);
         }
 
         private void SetFly(float i )
@@ -103,13 +121,15 @@ namespace Shared.Prefabs.PlayerCharacter
             }
         }
 
-        private void ClearBool()
+        private void ClearParametr()
         {
             _animator.SetBool("Fart", false);
             _animator.SetBool("Fly", false);
             _animator.SetBool("Cheer", false);
             _animator.SetBool("Lose", false);
             _animator.SetBool("Dead", false);
+            _animator.SetBool("Jump", false);
+            _animator.SetFloat("Speed", 0);
         }
     }
 }

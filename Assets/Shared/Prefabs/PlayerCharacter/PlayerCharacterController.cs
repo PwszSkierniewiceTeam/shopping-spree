@@ -39,13 +39,13 @@ public class PlayerCharacterController : MonoBehaviour
     private bool crouch = false;
     private float groundedRadius = .1f;
     private float ceilingRadius = .1f;
-    private bool isGrounded = true;
+    public bool isGrounded { get; private set; } = true;
     private bool wasGrounded = true;
     private int jumpCount = 0;
     private GamepadInput gamepadInput;
     private bool facingRight = true;
     private float horizontal;
-    private bool jump = false;
+    public bool jump { get; private set; } = false;
 
     private Vector3 direction = new Vector3();
     private bool throwObject = false;
