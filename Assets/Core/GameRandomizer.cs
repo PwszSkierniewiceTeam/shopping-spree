@@ -17,7 +17,8 @@ namespace Core
             {
                 (int) AvailableScene.FlappyRun,
                 (int) AvailableScene.RaceToTheCashRegister,
-                (int) AvailableScene.AvoidObstacles
+                (int) AvailableScene.AvoidObstacles,
+                (int) AvailableScene.ReachPlatform
             };
         }
 

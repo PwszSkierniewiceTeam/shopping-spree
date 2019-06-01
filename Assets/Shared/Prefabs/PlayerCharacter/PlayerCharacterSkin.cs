@@ -63,6 +63,28 @@ namespace Shared.Prefabs.PlayerCharacter
                 }
 
             }
+            if (fishFightGameController)
+            {
+                rb2D = playerCharacter.rb2D;
+                if (rb2D.velocity.y > 1f)
+                {
+                    SetAnimatorBool("Jump");
+                }
+                if (rb2D.velocity.y <= -0.5f)
+                {
+                    SetAnimatorBool("Fly");
+                }
+                if (playerCharacterController.isGrounded)
+                {
+                    SetAnimatorBool("Idle");
+                }
+                if (playerCharacterController.isGrounded && (rb2D.velocity.x > 0.5 || rb2D.velocity.x < -0.5))
+                {
+                    ClearParametr();
+                    _animator.SetFloat("Speed", 1f);
+                }
+
+            }
 
             if (raceGameController)
             {
