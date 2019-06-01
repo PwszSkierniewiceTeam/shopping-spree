@@ -42,17 +42,18 @@ namespace Core
         {
             Random rnd = new Random();
 
+            if (_availableGames.Count == 0)
+            {
+                _availableGames = new List<int>(_playedGames);
+                _playedGames = new List<int>();
+            }
+            
             int r = rnd.Next(_availableGames.Count);
             int buildIndex = _availableGames[r];
 
             _playedGames.Add(r);
             _availableGames.Remove(r);
 
-            if (_availableGames.Count == 0)
-            {
-                _availableGames = new List<int>(_playedGames);
-                _playedGames = new List<int>();
-            }
 
             return buildIndex;
         }
