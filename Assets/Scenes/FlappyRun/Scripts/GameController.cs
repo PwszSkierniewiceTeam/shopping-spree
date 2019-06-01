@@ -67,7 +67,18 @@ namespace Scenes.FlappyRun.Scripts
             foreach (Player player in players)
             {
                 Player p = player;
-                p.playerCharacter.onCollisionEnter2DSub.Subscribe((Collision2D other) => { PlayerDied(p); });
+                p.playerCharacter.onCollisionEnter2DSub.Subscribe((Collision2D other) =>
+                {
+                    if (!p.isDead)
+                    {
+                        PlayerDied(p);
+                    }
+                });
+
+                p.playerCharacter.onTriggerEnter2DSub.Subscribe((Collider2D other) =>
+                {
+                    p.playerCharacter.rb2D.AddForce(new Vector2(0, -upForce));
+                });
             }
         }
 
@@ -108,7 +119,7 @@ namespace Scenes.FlappyRun.Scripts
                     player.globalScore += 1;
                     GameState.Instance.lastWinner = player;
                     ClearLevelScores();
-                    SceneManager.LoadScene((int)AvailableScene.ScoreBoard);
+                    SceneManager.LoadScene((int) AvailableScene.ScoreBoard);
                 }
                 else
                 {

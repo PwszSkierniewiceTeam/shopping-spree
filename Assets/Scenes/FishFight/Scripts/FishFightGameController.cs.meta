@@ -3,7 +3,13 @@ guid: f0c32d48bf60fde468f6fba53ba3c484
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerCharacterPrefab: {fileID: 3435915733709829519, guid: ddf9ad4fd904cb84b85f6b8c95f3dd6f,
+      type: 3}
+  - countdown: {instanceID: 0}
+  - instruction: {instanceID: 0}
+  - throwable: {fileID: 8118073531072422778, guid: c08a3b3f3cff5ef46b7ca7ff052fd3e9,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

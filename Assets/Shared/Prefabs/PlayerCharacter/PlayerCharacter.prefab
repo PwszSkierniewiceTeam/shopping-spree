@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 3435915732395347917}
   - component: {fileID: 3435915732395347918}
   - component: {fileID: 2940304769088619237}
+  - component: {fileID: 7782011531650884696}
   m_Layer: 0
   m_Name: Female
   m_TagString: Untagged
@@ -122,6 +123,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63730b74c91ac784ebfa03457de8e121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 7782011531650884696}
+--- !u!95 &7782011531650884696
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435915732395347916}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c6cd782183cdb4a418fdf98a81f1fd25, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3435915732718453268
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +154,7 @@ GameObject:
   - component: {fileID: 3435915732718453269}
   - component: {fileID: 3435915732718453270}
   - component: {fileID: 3847821822036363245}
+  - component: {fileID: 4013026726861836133}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -148,7 +170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3435915732718453268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: -0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3435915733977803816}
@@ -214,6 +236,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63730b74c91ac784ebfa03457de8e121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 4013026726861836133}
+--- !u!95 &4013026726861836133
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435915732718453268}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2eb3dcf5b719914f9c00f3b2f6eb947, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3435915733297318276
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,6 +267,7 @@ GameObject:
   - component: {fileID: 3435915733297318277}
   - component: {fileID: 3435915733297318278}
   - component: {fileID: 3925312510327500455}
+  - component: {fileID: 8285622487628385373}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -240,7 +283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3435915733297318276}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0.002, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3435915733977803816}
@@ -306,6 +349,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63730b74c91ac784ebfa03457de8e121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 8285622487628385373}
+--- !u!95 &8285622487628385373
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435915733297318276}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: de2f97c7076fa2f48a2087f106a9760c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3435915733319917462
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +380,7 @@ GameObject:
   - component: {fileID: 3435915733319917463}
   - component: {fileID: 3435915733319917464}
   - component: {fileID: 7569921934277731199}
+  - component: {fileID: 4738686731625674685}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Untagged
@@ -332,7 +396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3435915733319917462}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: -0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3435915733977803816}
@@ -398,6 +462,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63730b74c91ac784ebfa03457de8e121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 4738686731625674685}
+--- !u!95 &4738686731625674685
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435915733319917462}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b4adad0582f54604696d2b26d7c0569c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3435915733521010280
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,6 +493,7 @@ GameObject:
   - component: {fileID: 3435915733521010281}
   - component: {fileID: 3435915733521010282}
   - component: {fileID: 1567568423451432150}
+  - component: {fileID: 6952089596296222328}
   m_Layer: 0
   m_Name: Adventurer
   m_TagString: Untagged
@@ -424,7 +509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3435915733521010280}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0.002, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3435915733977803816}
@@ -490,6 +575,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63730b74c91ac784ebfa03457de8e121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 6952089596296222328}
+--- !u!95 &6952089596296222328
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435915733521010280}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7765d7a0b55e1994087bc4d810c0ee65, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3435915733709829519
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,7 +626,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3435915733709829519}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3435915733977803816}
@@ -656,7 +761,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3435915733709829519}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: ef4bac33508166949a660b6891e81e5d, type: 2}
   m_IsTrigger: 0
@@ -665,10 +770,10 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.7, y: 0.7}
+    newSize: {x: 0.7, y: 0.7}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -735,10 +840,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.7, y: 0.7}
+    newSize: {x: 0.7, y: 0.7}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0

@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 300687573}
   - component: {fileID: 300687578}
+  - component: {fileID: 300687579}
   - component: {fileID: 300687577}
   - component: {fileID: 300687576}
   - component: {fileID: 300687575}
@@ -267,6 +268,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &300687579
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300687572}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 11.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 20.48, y: 5.12}
+    newSize: {x: 20.48, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 20.48, y: 5.12}
+  m_EdgeRadius: 0
 --- !u!1 &523221429
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,12 +464,12 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 50
+  m_fontSize: 100
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 100
+  m_fontSizeMax: 180
   m_fontStyle: 0
   m_textAlignment: 258
   m_isAlignmentEnumConverted: 1
@@ -451,11 +478,11 @@ MonoBehaviour:
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
+  m_charWidthMaxAdj: 25
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -847,6 +874,7 @@ MonoBehaviour:
   columnPrefab: {fileID: 6575223905412002057, guid: df56ae92d76472843b9ce26b433b7eaf,
     type: 3}
   spawnRate: 4
+  firstSpawn: 0.5
   columnMin: -3
   columnMax: 3
 --- !u!82 &1621009791
@@ -955,6 +983,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1731461553}
   - component: {fileID: 1731461555}
+  - component: {fileID: 1731461559}
   - component: {fileID: 1731461554}
   - component: {fileID: 1731461556}
   - component: {fileID: 1731461558}
@@ -1100,6 +1129,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb095a4cad07031469bf9ae192004ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1731461559
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731461552}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 11.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 20.48, y: 5.12}
+    newSize: {x: 20.48, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 20.48, y: 5.12}
+  m_EdgeRadius: 0
 --- !u!1 &1747424324
 GameObject:
   m_ObjectHideFlags: 0
