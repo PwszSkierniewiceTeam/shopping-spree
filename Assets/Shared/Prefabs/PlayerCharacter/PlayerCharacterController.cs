@@ -71,7 +71,7 @@ public class PlayerCharacterController : MonoBehaviour
 
 
 
-            if (gamepadInput.IsDown(GamepadButton.ButtonA))
+            if (gamepadInput.IsDown(GamepadButton.ButtonX))
             {
                 jump = true;
             }

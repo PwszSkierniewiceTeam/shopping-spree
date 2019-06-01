@@ -13,6 +13,7 @@ namespace Core
         AvoidObstacles,
         CarpCurling,
         FishFight,
-        TvFight
+        TvFight,
+        ReachPlatform
     }
 }
