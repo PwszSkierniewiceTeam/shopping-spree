@@ -761,7 +761,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3435915733709829519}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: ef4bac33508166949a660b6891e81e5d, type: 2}
   m_IsTrigger: 0
@@ -824,6 +824,7 @@ MonoBehaviour:
     m_Bits: 512
   playerRigidbody: {fileID: 2111540484137225262}
   crouchDisableCollider: {fileID: 4845432558717735399}
+  throwForce: 1500
 --- !u!61 &4845432558717735399
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -837,7 +838,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.05}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -863,9 +864,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.278}
+  m_Offset: {x: 0, y: -0.33}
   serializedVersion: 2
-  m_Radius: 0.27
+  m_Radius: 0.35
 --- !u!1 &3435915733977803815
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,7 +956,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5647839691308631568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0126, y: -0.5496, z: 0}
+  m_LocalPosition: {x: 0.0126, y: -0.683, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3435915733709829552}
@@ -985,7 +986,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7027458140744073614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2952, z: 0}
+  m_LocalPosition: {x: 0, y: 0.317, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3435915733709829552}
