@@ -38,10 +38,10 @@ public class FishFightGameController : BaseGameController
         base.Start();
         SpawnPlayersCharacters(new[]
             {
-                    new Vector2(-11, 0),
-                    new Vector2(-8f, 0),
-                    new Vector2(-9f, 0),
-                    new Vector2(-10f, 0)
+                    new Vector2(-8, 3),
+                    new Vector2(-8f, -2.5f),
+                    new Vector2(8f, -2.5f),
+                    new Vector2(8f, 3)
                 }
         );
         //WatchForCollisions();
