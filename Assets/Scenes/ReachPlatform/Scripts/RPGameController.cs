@@ -45,7 +45,7 @@ public class RPGameController : BaseGameController
         SpawnPlayersCharacters(new[]
             {
                     new Vector2(-3,-4),
-                    new Vector2(-39f, -49),
+                    new Vector2(-4f, -4),
                     new Vector2(-5f, -4),
                     new Vector2(-6f, -4)
                 }
