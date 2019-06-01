@@ -45,7 +45,7 @@ public class avoidObstaclesGameController : BaseGameController
         SpawnPlayersCharacters(new[]
             {
                     new Vector2(-3f, 0),
-                    new Vector2(-49f, -39),
+                    new Vector2(-4f, 0),
                     new Vector2(-5f, 0),
                     new Vector2(-6f, 0)
                 }
