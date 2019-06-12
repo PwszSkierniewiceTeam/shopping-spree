@@ -32,8 +32,7 @@ namespace Core
         public int globalScore = 0;
         public PlayerCharacter playerCharacter;
         public PlayerCharacterController characterController;
-        public bool moving, goRight; 
-        public float firstX, curentX;
+
 
         private bool _isDead;
         private static int _id = 1;

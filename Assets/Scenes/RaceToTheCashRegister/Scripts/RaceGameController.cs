@@ -15,7 +15,6 @@ namespace Scenes.RaceToTheCashRegister.Scripts
 
         private int moveSpeed = 2;
         private bool x;
-        private bool moved = true;
         public Rigidbody2D rb2D;
         private Animator _lightAnimator;
         private AudioSource _audioSource;
@@ -72,41 +71,42 @@ namespace Scenes.RaceToTheCashRegister.Scripts
             foreach (Player player in players)
             {
                 rb2D = player.playerCharacter.rb2D;
+                PlayerCharacterController pController = player.characterController;
 
-                if (!player.moving && x && moved && player.GamepadInput.IsDown(GamepadButton.ButtonX))
+                if (!pController.moving && pController.moved && x  && player.GamepadInput.IsDown(GamepadButton.ButtonX))
                 {
                     if (light.GetComponent<CheckLight>()._isOpen)
                     {
-                        player.firstX = rb2D.position.x;
+                        pController.firstX = rb2D.position.x;
                         rb2D.AddForce(Vector2.right * 150);
-                        player.moving = true;
-                        player.goRight = true;
-                        moved = false;
+                        pController.moving = true;
+                        pController.goRight = true;
+                        pController.moved = false;
                     }
 
                     if (light.GetComponent<CheckLight>()._isClosed && !CheckBack(player))
                     {
-                        player.firstX = rb2D.position.x;
+                        pController.firstX = rb2D.position.x;
                         rb2D.AddForce(Vector2.left * 180);
-                        player.moving = true;
-                        moved = false;
+                        pController.moving = true;
+                        pController.moved = false;
                     }
                 }
 
-                player.curentX = rb2D.position.x;
-                if (player.moving)
+                pController.curentX = rb2D.position.x;
+                if (pController.moving)
                 {
-                    if (player.curentX > player.firstX + moveSpeed && player.goRight)
+                    if (pController.curentX > pController.firstX + moveSpeed && pController.goRight)
                     {
                         rb2D.velocity = Vector2.zero;
-                        player.moving = false;
-                        player.goRight = false;
+                        pController.moving = false;
+                        pController.goRight = false;
                     }
 
-                    if (CheckBack(player) && !player.goRight || player.curentX < player.firstX - 1.5 * moveSpeed && !player.goRight)
+                    if (CheckBack(player) && !pController.goRight || pController.curentX < pController.firstX - 1.5 * moveSpeed && !pController.goRight)
                     {
                         rb2D.velocity = Vector2.zero;
-                        player.moving = false;
+                        pController.moving = false;
                     }
 
                     CheckWin();
@@ -128,7 +128,10 @@ namespace Scenes.RaceToTheCashRegister.Scripts
             else
             {
                 x = false;
-                moved = true;
+                foreach (Player player in players)
+                {
+                    player.characterController.moved = true;
+                }
             }
                 
         }
@@ -145,7 +148,7 @@ namespace Scenes.RaceToTheCashRegister.Scripts
         {
             foreach (Player player in players)
             {
-                player.moving = false;
+                player.characterController.moving = false;
             }
         }
 

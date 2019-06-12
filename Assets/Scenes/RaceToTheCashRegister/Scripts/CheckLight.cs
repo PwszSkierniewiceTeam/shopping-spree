@@ -28,7 +28,7 @@ public class CheckLight : MonoBehaviour
     void FixedUpdate()
     {
         _isClosed = light.GetBool("IsClosed");
-        _isClosed = light.GetBool("isOpen");
+        _isOpen = light.GetBool("IsOpen");
         
         if (timer1 > 0)
         {

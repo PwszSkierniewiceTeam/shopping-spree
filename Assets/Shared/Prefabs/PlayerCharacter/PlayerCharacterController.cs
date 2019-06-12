@@ -46,6 +46,8 @@ public class PlayerCharacterController : MonoBehaviour
     private bool facingRight = true;
     private float horizontal;
     public bool jump { get; private set; } = false;
+    public bool moving, moved, goRight;
+    public float firstX, curentX;
 
     private Vector3 direction = new Vector3();
     private bool throwObject = false;
