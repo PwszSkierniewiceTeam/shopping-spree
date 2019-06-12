@@ -123,7 +123,7 @@ namespace Scenes.RaceToTheCashRegister.Scripts
         }
         private void CheckChangeLight()
         {
-            if (_lightAnimator.GetBool("IsOpen") || _lightAnimator.GetBool("IsClosed"))
+            if (light.GetComponent<CheckLight>()._isClosed || light.GetComponent<CheckLight>()._isOpen)
                 x = true;
             else
             {

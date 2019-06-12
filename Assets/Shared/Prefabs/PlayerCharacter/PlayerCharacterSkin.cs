@@ -20,7 +20,7 @@ namespace Shared.Prefabs.PlayerCharacter
         private avoidObstaclesGameController avoidObstaclesGameController;
         private RPGameController rPGameController;
         private Player player;
-        private float timer { get; set; } = 1;
+        private float timer { get; set; } = 0.8f;
 
 
         private void Awake()
@@ -43,7 +43,7 @@ namespace Shared.Prefabs.PlayerCharacter
                 SetAnimatorBool("Dead");
                 timer -= Time.deltaTime;
                 if(timer <= 0)
-                    playerCharacter.gameObject.SetActive(false);
+                    gameObject.SetActive(false);
             }
             
             if(avoidObstaclesGameController)
