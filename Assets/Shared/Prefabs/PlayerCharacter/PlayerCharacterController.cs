@@ -129,10 +129,10 @@ public class PlayerCharacterController : MonoBehaviour
         {
             return;
         }
-        var offset = new Vector3(0.1f, 0, 0);
-        if (!facingRight)
+        var offset = new Vector3(0.4f, 0, 0);
+        if (direction.x < 0)
         {
-            offset.x = -0.1f;
+            offset.x = -0.4f;
         }
         var throwable = Instantiate(ThrowableObject, transform.position + offset, Quaternion.identity);
         Throwables.Add(throwable);
