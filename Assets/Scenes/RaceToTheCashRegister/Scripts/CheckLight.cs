@@ -68,7 +68,7 @@ public class CheckLight : MonoBehaviour
             setTimer1();
             light.SetBool("IsOpen", false);
             light.SetBool("IsClosed", false);
-            timer2 = 0.9f;
+            timer2 = 0.75f;
         }
     }
 }
