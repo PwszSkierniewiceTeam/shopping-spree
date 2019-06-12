@@ -27,6 +27,8 @@ public class CheckLight : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        _isClosed = light.GetBool("IsClosed");
+        _isClosed = light.GetBool("isOpen");
         
         if (timer1 > 0)
         {

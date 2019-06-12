@@ -18,6 +18,7 @@ namespace Shared.Prefabs.PlayerCharacter
         private ScoreBoardController scoreBoardController;
         private FishFightGameController fishFightGameController;
         private avoidObstaclesGameController avoidObstaclesGameController;
+        private RPGameController rPGameController;
         private Player player;
         private float timer { get; set; } = 1;
 
@@ -63,7 +64,7 @@ namespace Shared.Prefabs.PlayerCharacter
                 }
 
             }
-            if (fishFightGameController)
+            if (fishFightGameController || rPGameController )
             {
                 rb2D = playerCharacter.rb2D;
                 if (rb2D.velocity.y > 1f)

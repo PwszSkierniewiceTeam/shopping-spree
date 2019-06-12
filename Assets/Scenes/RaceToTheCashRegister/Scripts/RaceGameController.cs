@@ -73,9 +73,9 @@ namespace Scenes.RaceToTheCashRegister.Scripts
             {
                 rb2D = player.playerCharacter.rb2D;
 
-                if (player.GamepadInput.IsDown(GamepadButton.ButtonX) && !player.moving && x && moved)
+                if (!player.moving && x && moved && player.GamepadInput.IsDown(GamepadButton.ButtonX))
                 {
-                    if (_lightAnimator.GetBool("IsOpen"))
+                    if (light.GetComponent<CheckLight>()._isOpen)
                     {
                         player.firstX = rb2D.position.x;
                         rb2D.AddForce(Vector2.right * 150);
@@ -84,7 +84,7 @@ namespace Scenes.RaceToTheCashRegister.Scripts
                         moved = false;
                     }
 
-                    if (_lightAnimator.GetBool("IsClosed") && !CheckBack(player))
+                    if (light.GetComponent<CheckLight>()._isClosed && !CheckBack(player))
                     {
                         player.firstX = rb2D.position.x;
                         rb2D.AddForce(Vector2.left * 180);
@@ -116,7 +116,7 @@ namespace Scenes.RaceToTheCashRegister.Scripts
 
         private bool CheckBack(Player player)
         {
-            if (player.playerCharacter.rb2D.position.x <= -9)
+            if (player.playerCharacter.rb2D.position.x <= -8)
                 return true;
             else
                 return false;
