@@ -62,6 +62,7 @@ public class FishFightGameController : BaseGameController
                 player.characterController.CanThrowStuff = true;
                 player.characterController.ThrowableObject = throwable;
                 player.characterController.CanThrowMoreThanOneThing = true;
+                player.characterController.IsThrowPowerFromButtonHold = true;
             }
         });
     }

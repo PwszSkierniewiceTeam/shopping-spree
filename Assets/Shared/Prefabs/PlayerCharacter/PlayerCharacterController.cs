@@ -13,7 +13,7 @@ public class PlayerCharacterController : MonoBehaviour
     [SerializeField]
     public float JumpForce = 200f;
     [SerializeField]
-    private Transform[] groundPoints;
+    private Transform groundPoint;
     [SerializeField]
     private Transform ceilingPoint;
     [SerializeField]
@@ -66,7 +66,7 @@ public class PlayerCharacterController : MonoBehaviour
 
         if (allowCharacterControll)
 
-        { 
+        {
             horizontal = gamepadInput.GetJoystickAxis(GamepadJoystick.LeftJoystickHorizontal);
 
 
@@ -84,7 +84,6 @@ public class PlayerCharacterController : MonoBehaviour
             {
                 crouch = false;
             }
-
             direction.Set(gamepadInput.GetJoystickAxis(GamepadJoystick.RightJoystickHorizontal), gamepadInput.GetJoystickAxis(GamepadJoystick.RightJoystickVertical), 0);
 
             if (gamepadInput.IsDown(GamepadButton.RBumper))
@@ -92,6 +91,11 @@ public class PlayerCharacterController : MonoBehaviour
                 if (IsThrowPowerFromButtonHold)
                 {
                     StartGatheringPower();
+                }
+                else
+                {
+                    power = throwForce;
+                    throwObject = true;
                 }
             }
 
@@ -105,10 +109,6 @@ public class PlayerCharacterController : MonoBehaviour
 
             if (gamepadInput.IsUp(GamepadButton.RBumper))
             {
-                if (!IsThrowPowerFromButtonHold)
-                {
-                    power = throwForce;
-                }
                 throwObject = true;
             }
         }
@@ -124,13 +124,20 @@ public class PlayerCharacterController : MonoBehaviour
     }
     private void launchObject()
     {
+
         if (!CanThrowMoreThanOneThing && Throwables.Any())
         {
             return;
         }
-        var throwable = Instantiate(ThrowableObject, transform.position, Quaternion.identity);
+        var offset = new Vector3(0.1f, 0, 0);
+        if (!facingRight)
+        {
+            offset.x = -0.1f;
+        }
+        var throwable = Instantiate(ThrowableObject, transform.position + offset, Quaternion.identity);
         Throwables.Add(throwable);
         throwable.GetComponent<Rigidbody2D>().AddForce(direction * power);
+        power = default;
     }
 
     void FixedUpdate()
@@ -207,18 +214,14 @@ public class PlayerCharacterController : MonoBehaviour
     {
         if (playerRigidbody.velocity.y <= 0)
         {
-            foreach (var point in groundPoints)
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(groundPoint.position, groundedRadius, whatIsGround);
+
+            foreach (var collider in colliders)
             {
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(point.position, groundedRadius, whatIsGround);
-
-                foreach (var collider in colliders)
+                if (collider.gameObject != gameObject)
                 {
-                    if (collider.gameObject != gameObject)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
-
             }
         }
         return false;
