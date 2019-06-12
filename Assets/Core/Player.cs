@@ -16,11 +16,15 @@ namespace Core
                     if (_isDead)
                     {
                         playerCharacter.CurrentSkin._animator.SetBool("Dead", true);
-                        playerCharacter.collider2D.enabled = false;
+                        //playerCharacter.collider2D.enabled = false;
+                        playerCharacter.boxCollider2D.enabled = false;
+                        playerCharacter.circleCollider2D.enabled = false;
                     }
                     else
                     {
-                        playerCharacter.collider2D.enabled = true;
+                        playerCharacter.boxCollider2D.enabled = true;
+                        playerCharacter.circleCollider2D.enabled = true;
+                        //playerCharacter.collider2D.enabled = true;
                     }
                 }
             }

@@ -216,9 +216,13 @@ public class PlayerCharacterController : MonoBehaviour
         {
             Collider2D collider = Physics2D.OverlapCircle(groundPoint.position, groundedRadius, whatIsGround);
 
-            if (collider.gameObject != gameObject)
+            if (collider != null)
             {
-                return true;
+                if (collider.gameObject != gameObject)
+                {
+                    return true;
+                }
+
             }
         }
         return false;

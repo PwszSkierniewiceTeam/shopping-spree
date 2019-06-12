@@ -15,6 +15,15 @@ public class FishFightGameController : BaseGameController
     public GameObject instruction;
     public GameObject throwable;
 
+    private List<Vector2> _initialSpawnPoints = new List<Vector2>
+    {
+        new Vector2(-8, 3),
+        new Vector2(-8f, -2.5f),
+        new Vector2(8f, -2.5f),
+        new Vector2(8f, 3)
+    };
+    private Vector2[] _spawnPoints;
+
     private void Awake()
     {
         if (instance == null)
@@ -36,15 +45,9 @@ public class FishFightGameController : BaseGameController
     private new void Start()
     {
         base.Start();
-        SpawnPlayersCharacters(new[]
-            {
-                    new Vector2(-8, 3),
-                    new Vector2(-8f, -2.5f),
-                    new Vector2(8f, -2.5f),
-                    new Vector2(8f, 3)
-                }
-        );
-        //WatchForCollisions();
+        _spawnPoints = _initialSpawnPoints.Take(players.Length).ToArray();
+        SpawnPlayersCharacters(_spawnPoints);
+        WatchForCollisions();
 
         Physics2D.gravity = Vector2.zero;
         Countdown countdownInstance = countdown.GetComponent<Countdown>();
@@ -73,14 +76,21 @@ public class FishFightGameController : BaseGameController
         foreach (Player player in players)
         {
             Player p = player;
-            p.playerCharacter.onCollisionEnter2DSub.Subscribe((Collision2D other) => PlayerDied(p, other));
+            p.playerCharacter.onCollisionEnter2DSub.Subscribe((Collision2D collision) => PlayerDied(p, collision));
         }
     }
 
-    private void PlayerDied(Player player, Collision2D other)
+    private void PlayerDied(Player player, Collision2D collision)
     {
-        player.isDead = true;
-        CheckGameOver();
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Thorns"))
+        {
+            Debug.Log("thorns");
+            Debug.Log(collision.gameObject.layer);
+            
+            collision.otherCollider.gameObject.transform.position = _spawnPoints.ElementAt(player.Id -1);
+        }
+        //player.isDead = true;
+        //CheckGameOver();
     }
 
     private void CheckGameOver()
