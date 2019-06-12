@@ -10,7 +10,6 @@ public class CheckLight : MonoBehaviour
     private int x ;
     private new Animator light;
     public static CheckLight instance;
-    public RaceGameController race;
 
     private void Awake()
     {

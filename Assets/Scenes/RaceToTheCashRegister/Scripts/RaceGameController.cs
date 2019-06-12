@@ -93,17 +93,16 @@ namespace Scenes.RaceToTheCashRegister.Scripts
                     }
                 }
 
-                pController.curentX = rb2D.position.x;
                 if (pController.moving)
                 {
-                    if (pController.curentX > pController.firstX + moveSpeed && pController.goRight)
+                    if (rb2D.position.x > pController.firstX + moveSpeed && pController.goRight)
                     {
                         rb2D.velocity = Vector2.zero;
                         pController.moving = false;
                         pController.goRight = false;
                     }
 
-                    if (CheckBack(player) && !pController.goRight || pController.curentX < pController.firstX - 1.5 * moveSpeed && !pController.goRight)
+                    if (CheckBack(player) && !pController.goRight || rb2D.position.x < pController.firstX - 1.5 * moveSpeed && !pController.goRight)
                     {
                         rb2D.velocity = Vector2.zero;
                         pController.moving = false;
