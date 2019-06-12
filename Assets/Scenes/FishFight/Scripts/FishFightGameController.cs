@@ -86,8 +86,11 @@ public class FishFightGameController : BaseGameController
         {
             Debug.Log("thorns");
             Debug.Log(collision.gameObject.layer);
-            
-            collision.otherCollider.gameObject.transform.position = _spawnPoints.ElementAt(player.Id -1);
+            player.isDead = true;
+            player.playerCharacter.rb2D.AddForce(new Vector2(0, -100));
+
+            //player.isDead = false;
+            //collision.otherCollider.gameObject.transform.position = _spawnPoints.ElementAt(player.Id -1);
         }
         //player.isDead = true;
         //CheckGameOver();

@@ -76,14 +76,14 @@ public class PlayerCharacterController : MonoBehaviour
                 jump = true;
             }
 
-            if (gamepadInput.IsDown(GamepadButton.ButtonB))
-            {
-                crouch = true;
-            }
-            else if (gamepadInput.IsUp(GamepadButton.ButtonB))
-            {
-                crouch = false;
-            }
+            //if (gamepadInput.IsDown(GamepadButton.ButtonB))
+            //{
+            //    crouch = true;
+            //}
+            //else if (gamepadInput.IsUp(GamepadButton.ButtonB))
+            //{
+            //    crouch = false;
+            //}
             direction.Set(gamepadInput.GetJoystickAxis(GamepadJoystick.RightJoystickHorizontal), gamepadInput.GetJoystickAxis(GamepadJoystick.RightJoystickVertical), 0);
 
             if (gamepadInput.IsDown(GamepadButton.RBumper))
@@ -165,19 +165,19 @@ public class PlayerCharacterController : MonoBehaviour
             jumpCount = 0;
         }
 
-        if (!crouch)
-        {
-            crouch = HaveToCrouch();
-        }
-        if (crouch)
-        {
-            movementSpeed *= 0.5f;
-            crouchDisableCollider.enabled = false;
-        }
-        else
-        {
-            crouchDisableCollider.enabled = true;
-        }
+        //if (!crouch)
+        //{
+        //    crouch = HaveToCrouch();
+        //}
+        //if (crouch)
+        //{
+        //    movementSpeed *= 0.5f;
+        //    crouchDisableCollider.enabled = false;
+        //}
+        //else
+        //{
+        //    crouchDisableCollider.enabled = true;
+        //}
 
         if (CanMove && (isGrounded || CanBeAirControlled))
         {
@@ -228,12 +228,12 @@ public class PlayerCharacterController : MonoBehaviour
         return false;
     }
 
-    private bool HaveToCrouch()
-    {
-        if (Physics2D.OverlapCircle(ceilingPoint.position, ceilingRadius, whatIsGround))
-        {
-            return true;
-        }
-        return false;
-    }
+    //private bool HaveToCrouch()
+    //{
+    //    if (Physics2D.OverlapCircle(ceilingPoint.position, ceilingRadius, whatIsGround))
+    //    {
+    //        return true;
+    //    }
+    //    return false;
+    //}
 }
