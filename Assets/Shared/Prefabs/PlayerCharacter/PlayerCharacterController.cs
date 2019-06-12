@@ -214,14 +214,11 @@ public class PlayerCharacterController : MonoBehaviour
     {
         if (playerRigidbody.velocity.y <= 0)
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(groundPoint.position, groundedRadius, whatIsGround);
+            Collider2D collider = Physics2D.OverlapCircle(groundPoint.position, groundedRadius, whatIsGround);
 
-            foreach (var collider in colliders)
+            if (collider.gameObject != gameObject)
             {
-                if (collider.gameObject != gameObject)
-                {
-                    return true;
-                }
+                return true;
             }
         }
         return false;
