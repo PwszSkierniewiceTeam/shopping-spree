@@ -39,6 +39,7 @@ public class PlayerCharacterController : MonoBehaviour
     private bool crouch = false;
     private float groundedRadius = .1f;
     private float ceilingRadius = .1f;
+    private Quaternion quaternion = Quaternion.identity;
     public bool isGrounded { get; private set; } = true;
     private bool wasGrounded = true;
     private int jumpCount = 0;
@@ -122,21 +123,28 @@ public class PlayerCharacterController : MonoBehaviour
     {
         power = 1000;
     }
-    private void launchObject()
+    private void LaunchObject()
     {
-
         if (!CanThrowMoreThanOneThing && Throwables.Any())
         {
             return;
         }
         var offset = new Vector3(0.4f, 0, 0);
-        if (direction.x < 0)
+        if (!facingRight)
         {
             offset.x = -0.4f;
+            quaternion.Set(0, -1, 0, 0);
         }
-        var throwable = Instantiate(ThrowableObject, transform.position + offset, Quaternion.identity);
+        var throwable = Instantiate(ThrowableObject, transform.position + offset, quaternion);
         Throwables.Add(throwable);
-        throwable.GetComponent<Rigidbody2D>().AddForce(direction * power);
+        if (direction == Vector3.zero)
+        {
+            throwable.GetComponent<Rigidbody2D>().AddForce(offset * power);
+        }
+        else
+        {
+            throwable.GetComponent<Rigidbody2D>().AddForce(direction * power);
+        }
         power = default;
     }
 
@@ -145,7 +153,7 @@ public class PlayerCharacterController : MonoBehaviour
         Move(horizontal, MovementSpeed, crouch);
         if (CanThrowStuff && throwObject && ThrowableObject != null)
         {
-            launchObject();
+            LaunchObject();
             throwObject = false;
         }
     }

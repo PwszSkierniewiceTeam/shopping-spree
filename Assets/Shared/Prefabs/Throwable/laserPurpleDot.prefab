@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 352503036637097265}
   - component: {fileID: 5838358922557472962}
   - component: {fileID: 5402058686910711808}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: laserPurpleDot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 680893f63e7c11c4284f9020d4670a62, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.01, y: 0.01}

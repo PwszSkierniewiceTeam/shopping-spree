@@ -17,6 +17,9 @@ public class FishFightGameController : BaseGameController
     public GameObject instruction;
     public GameObject throwable;
 
+    [SerializeField]
+    private int secondsToRespawn = 4;
+
     private List<Vector2> _initialSpawnPoints = new List<Vector2>
     {
         new Vector2(-8, 3.6f),
@@ -66,7 +69,7 @@ public class FishFightGameController : BaseGameController
                 player.characterController.CanCrouch = true;
                 player.characterController.CanThrowStuff = true;
                 player.characterController.ThrowableObject = throwable;
-                player.characterController.CanThrowMoreThanOneThing = true;
+                player.characterController.CanThrowMoreThanOneThing = false;
                 player.characterController.IsThrowPowerFromButtonHold = true;
             }
         });
@@ -80,7 +83,7 @@ public class FishFightGameController : BaseGameController
             Player p = player;
             p.playerCharacter.onTriggerEnter2DSub.Subscribe(async (Collider2D collision) =>
             {
-                if (collision.gameObject.layer == LayerMask.NameToLayer("Thorns") || collision.gameObject.layer == LayerMask.NameToLayer("lava"))
+                if (collision.gameObject.layer == LayerMask.NameToLayer("Killz") && !player.characterController.Throwables.Contains(collision.gameObject))
                 {
                     await PlayerDiedAsync(p, collision);
                 }
@@ -99,8 +102,7 @@ public class FishFightGameController : BaseGameController
         player.playerCharacter.boxCollider2D.enabled = false;
         player.playerCharacter.rb2D.AddForce(new Vector2(0, -100));
 
-        Func<int, Task> Delay = async t => { await Task.Delay(TimeSpan.FromSeconds(t)); };
-        await Delay(5);
+        await ((Func<int, Task>)(async t => await Task.Delay(TimeSpan.FromSeconds(t))))(secondsToRespawn);
 
         player.playerCharacter.circleCollider2D.enabled = true;
         player.playerCharacter.boxCollider2D.enabled = true;

@@ -1349,7 +1349,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1783,7 +1783,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -4084,7 +4084,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -4285,7 +4285,7 @@ GameObject:
   - component: {fileID: 396871068}
   - component: {fileID: 396871067}
   - component: {fileID: 396871069}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: spritesheet_tiles_69
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4364,7 +4364,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -5422,7 +5422,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -6202,7 +6202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584870040}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.76, y: 3.42, z: -9.406535}
+  m_LocalPosition: {x: -6.76, y: 3.6, z: -9.406535}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 202657135}
@@ -8466,7 +8466,7 @@ GameObject:
   - component: {fileID: 863623434}
   - component: {fileID: 863623433}
   - component: {fileID: 863623435}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: spritesheet_tiles_69 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8545,7 +8545,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -8721,7 +8721,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -9993,7 +9993,7 @@ GameObject:
   - component: {fileID: 972738232}
   - component: {fileID: 972738231}
   - component: {fileID: 972738233}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: spritesheet_tiles_69 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10072,7 +10072,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -10203,7 +10203,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -12273,7 +12273,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -13182,7 +13182,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330417767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.77, y: 0.53, z: 0}
+  m_LocalPosition: {x: 3.77, y: 0.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 312637174}
@@ -13306,7 +13306,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1341121682}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Thorns
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13554,7 +13554,7 @@ GameObject:
   - component: {fileID: 1386176304}
   - component: {fileID: 1386176303}
   - component: {fileID: 1386176305}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: spritesheet_tiles_69 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13633,7 +13633,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -14016,7 +14016,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419484501}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.400002, y: 0.53, z: 0}
+  m_LocalPosition: {x: 17.400002, y: 0.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1760541398}
@@ -14446,7 +14446,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476235456}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.870001, y: 3.42, z: -9.406535}
+  m_LocalPosition: {x: 6.870001, y: 3.6, z: -9.406535}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1073680918}
@@ -14978,7 +14978,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -15293,7 +15293,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -19500,7 +19500,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -19598,7 +19598,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -19641,8 +19641,9 @@ MonoBehaviour:
   countdown: {fileID: 1167610721}
   winsToWinLevel: 2
   instruction: {fileID: 723634240}
-  throwable: {fileID: 8118073531072422778, guid: c08a3b3f3cff5ef46b7ca7ff052fd3e9,
+  throwable: {fileID: 2104938527112609299, guid: 09a7a57bfe458564e979b1ea0f94f263,
     type: 3}
+  secondsToRespawn: 4
 --- !u!4 &2021671032
 Transform:
   m_ObjectHideFlags: 0
@@ -20387,7 +20388,7 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
