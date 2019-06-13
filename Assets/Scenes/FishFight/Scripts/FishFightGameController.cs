@@ -5,6 +5,8 @@ using UniRx;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+using System.Threading.Tasks;
 
 public class FishFightGameController : BaseGameController
 {
@@ -17,10 +19,10 @@ public class FishFightGameController : BaseGameController
 
     private List<Vector2> _initialSpawnPoints = new List<Vector2>
     {
-        new Vector2(-8, 3),
+        new Vector2(-8, 3.6f),
+        new Vector2(8f, 3.6f),
         new Vector2(-8f, -2.5f),
-        new Vector2(8f, -2.5f),
-        new Vector2(8f, 3)
+        new Vector2(8f, -2.5f)
     };
     private Vector2[] _spawnPoints;
 
@@ -76,24 +78,37 @@ public class FishFightGameController : BaseGameController
         foreach (Player player in players)
         {
             Player p = player;
-            p.playerCharacter.onCollisionEnter2DSub.Subscribe((Collision2D collision) => PlayerDied(p, collision));
+            p.playerCharacter.onTriggerEnter2DSub.Subscribe(async (Collider2D collision) =>
+            {
+                if (collision.gameObject.layer == LayerMask.NameToLayer("Thorns") || collision.gameObject.layer == LayerMask.NameToLayer("lava"))
+                {
+                    await PlayerDiedAsync(p, collision);
+                }
+
+            });
         }
     }
 
-    private void PlayerDied(Player player, Collision2D collision)
+    private async Task PlayerDiedAsync(Player player, Collider2D collision)
     {
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Thorns"))
-        {
-            Debug.Log("thorns");
-            Debug.Log(collision.gameObject.layer);
-            player.isDead = true;
-            player.playerCharacter.rb2D.AddForce(new Vector2(0, -100));
 
-            //player.isDead = false;
-            //collision.otherCollider.gameObject.transform.position = _spawnPoints.ElementAt(player.Id -1);
-        }
-        //player.isDead = true;
-        //CheckGameOver();
+        player.characterController.CanMove = false;
+        player.characterController.CanJump = false;
+        player.characterController.CanThrowStuff = false;
+        player.playerCharacter.circleCollider2D.enabled = false;
+        player.playerCharacter.boxCollider2D.enabled = false;
+        player.playerCharacter.rb2D.AddForce(new Vector2(0, -100));
+
+        Func<int, Task> Delay = async t => { await Task.Delay(TimeSpan.FromSeconds(t)); };
+        await Delay(5);
+
+        player.playerCharacter.circleCollider2D.enabled = true;
+        player.playerCharacter.boxCollider2D.enabled = true;
+        player.playerCharacter.rb2D.velocity = Vector3.zero;
+        player.characterController.gameObject.transform.position = _spawnPoints.ElementAt(Array.IndexOf(players, player));
+        player.characterController.CanMove = true;
+        player.characterController.CanJump = true;
+        player.characterController.CanThrowStuff = true;
     }
 
     private void CheckGameOver()
