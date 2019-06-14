@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UniRx;
 
 public class PlayerCharacterController : MonoBehaviour
 {
@@ -55,16 +56,6 @@ public class PlayerCharacterController : MonoBehaviour
     public List<GameObject> Throwables { get; private set; } = new List<GameObject>();
     private void Update()
     {
-        if (DestroyThrowableAfterItStops && Throwables.Any())
-        {
-            var thr = Throwables.Where(t => !t.GetComponent<Rigidbody2D>().IsAwake()).ToList();
-            thr.ForEach(t =>
-            {
-                Throwables.Remove(t);
-                Destroy(t);
-            });
-        }
-
         if (allowCharacterControll)
 
         {
@@ -130,12 +121,30 @@ public class PlayerCharacterController : MonoBehaviour
             return;
         }
         var offset = new Vector3(0.4f, 0, 0);
-        if (!facingRight)
+        quaternion = Quaternion.identity;
+        if (direction.x < 0)
         {
             offset.x = -0.4f;
             quaternion.Set(0, -1, 0, 0);
         }
         var throwable = Instantiate(ThrowableObject, transform.position + offset, quaternion);
+        throwable.GetComponent<ThrowableController>().Hit += (s, collision) =>
+        {
+            if (collision.gameObject != playerRigidbody.gameObject)
+            {
+                Throwables.Remove(throwable);
+                Destroy(throwable);
+            }
+        };
+        throwable.GetComponent<ThrowableController>().Stoped += (s, a) =>
+        {
+            if (DestroyThrowableAfterItStops)
+            {
+                Throwables.Remove(throwable);
+                Destroy(throwable);
+            }
+        };
+
         Throwables.Add(throwable);
         if (direction == Vector3.zero)
         {
