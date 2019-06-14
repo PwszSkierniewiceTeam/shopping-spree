@@ -71,6 +71,7 @@ public class FishFightGameController : BaseGameController
                 player.characterController.ThrowableObject = throwable;
                 player.characterController.CanThrowMoreThanOneThing = false;
                 player.characterController.IsThrowPowerFromButtonHold = true;
+                player.characterController.ResetStatus();
             }
         });
     }
@@ -94,7 +95,6 @@ public class FishFightGameController : BaseGameController
 
     private async Task PlayerDiedAsync(Player player, Collider2D collision)
     {
-
         player.characterController.CanMove = false;
         player.characterController.CanJump = false;
         player.characterController.CanThrowStuff = false;
@@ -104,6 +104,7 @@ public class FishFightGameController : BaseGameController
 
         await ((Func<int, Task>)(async t => await Task.Delay(TimeSpan.FromSeconds(t))))(secondsToRespawn);
 
+        player.characterController.ResetStatus();
         player.playerCharacter.circleCollider2D.enabled = true;
         player.playerCharacter.boxCollider2D.enabled = true;
         player.playerCharacter.rb2D.velocity = Vector3.zero;

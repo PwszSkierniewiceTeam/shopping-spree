@@ -42,7 +42,6 @@ public class PlayerCharacterController : MonoBehaviour
     private float ceilingRadius = .1f;
     private Quaternion quaternion = Quaternion.identity;
     public bool isGrounded { get; private set; } = true;
-    private bool wasGrounded = true;
     private int jumpCount = 0;
     private GamepadInput gamepadInput;
     private bool facingRight = true;
@@ -57,11 +56,8 @@ public class PlayerCharacterController : MonoBehaviour
     private void Update()
     {
         if (allowCharacterControll)
-
         {
             horizontal = gamepadInput.GetJoystickAxis(GamepadJoystick.LeftJoystickHorizontal);
-
-
 
             if (gamepadInput.IsDown(GamepadButton.ButtonX))
             {
@@ -105,6 +101,29 @@ public class PlayerCharacterController : MonoBehaviour
             }
         }
     }
+    void FixedUpdate()
+    {
+        Move(horizontal, MovementSpeed, crouch);
+        if (CanThrowStuff && throwObject && ThrowableObject != null)
+        {
+            LaunchObject();
+            throwObject = false;
+        }
+    }
+    public void SetInputSource(GamepadInput gamepadInput)
+    {
+        this.gamepadInput = gamepadInput;
+        allowCharacterControll = true;
+    }
+
+    public void ResetStatus()
+    {
+        jump = default;
+        throwObject = default;
+        jumpCount = default;
+        power = default;
+    }
+
     private void ContinueGatheringPower()
     {
         power += 10;
@@ -157,27 +176,11 @@ public class PlayerCharacterController : MonoBehaviour
         power = default;
     }
 
-    void FixedUpdate()
-    {
-        Move(horizontal, MovementSpeed, crouch);
-        if (CanThrowStuff && throwObject && ThrowableObject != null)
-        {
-            LaunchObject();
-            throwObject = false;
-        }
-    }
-
-    public void SetInputSource(GamepadInput gamepadInput)
-    {
-        this.gamepadInput = gamepadInput;
-        allowCharacterControll = true;
-    }
-
 
     private void Move(float horizontal, float movementSpeed, bool crouch)
     {
         isGrounded = IsGrounded();
-        if (isGrounded == true && wasGrounded == false)
+        if (isGrounded)
         {
             jumpCount = 0;
         }
@@ -205,14 +208,10 @@ public class PlayerCharacterController : MonoBehaviour
             playerRigidbody.velocity = new Vector2(horizontal * movementSpeed * Time.fixedDeltaTime, playerRigidbody.velocity.y);
         }
 
-        if (CanJump && jump && (isGrounded || CanDoubleJump == true && jumpCount < 2))
+        if (CanJump && jump && (isGrounded || CanDoubleJump && jumpCount < 2))
         {
             jump = false;
             jumpCount++;
-            if (isGrounded == false)
-            {
-                wasGrounded = false;
-            }
             playerRigidbody.AddForce(new Vector2(0, JumpForce));
             isGrounded = false;
         }
@@ -239,7 +238,6 @@ public class PlayerCharacterController : MonoBehaviour
                 {
                     return true;
                 }
-
             }
         }
         return false;
