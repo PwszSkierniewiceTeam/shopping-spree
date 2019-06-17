@@ -19644,6 +19644,7 @@ MonoBehaviour:
   throwable: {fileID: 2104938527112609299, guid: 09a7a57bfe458564e979b1ea0f94f263,
     type: 3}
   secondsToRespawn: 4
+  blood: {fileID: 4257252048422208647, guid: d850d8c687a46b244a87103dde595ce2, type: 3}
 --- !u!4 &2021671032
 Transform:
   m_ObjectHideFlags: 0
