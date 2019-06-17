@@ -7,6 +7,9 @@ public class ThrowableController : MonoBehaviour
 {
     public event EventHandler<Collider2D> Hit;
     public event EventHandler Stoped;
+
+    [SerializeField]
+    private GameObject disapearParticles;
     protected virtual void OnHit(Collider2D collision)
     {
         Hit?.Invoke(this, collision);
@@ -35,6 +38,10 @@ public class ThrowableController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag != "Player")
+        {
+            Instantiate(disapearParticles, transform.position, Quaternion.identity);
+        }
         OnHit(collision);
     }
 }

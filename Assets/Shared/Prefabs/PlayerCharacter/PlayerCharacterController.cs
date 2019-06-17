@@ -35,8 +35,8 @@ public class PlayerCharacterController : MonoBehaviour
     public bool CanThrowMoreThanOneThing { get; set; } = false;
     public bool DestroyThrowableAfterItStops { get; set; } = true;
     public bool IsThrowPowerFromButtonHold { get; set; } = true;
+    public bool AllowCharacterControll { get; set; } = false;
 
-    private bool allowCharacterControll = false;
     private bool crouch = false;
     private float groundedRadius = .1f;
     private float ceilingRadius = .1f;
@@ -53,9 +53,10 @@ public class PlayerCharacterController : MonoBehaviour
     private float power;
     public GameObject ThrowableObject { get; set; }
     public List<GameObject> Throwables { get; private set; } = new List<GameObject>();
+
     private void Update()
     {
-        if (allowCharacterControll)
+        if (AllowCharacterControll)
         {
             horizontal = gamepadInput.GetJoystickAxis(GamepadJoystick.LeftJoystickHorizontal);
 
@@ -113,7 +114,7 @@ public class PlayerCharacterController : MonoBehaviour
     public void SetInputSource(GamepadInput gamepadInput)
     {
         this.gamepadInput = gamepadInput;
-        allowCharacterControll = true;
+        AllowCharacterControll = true;
     }
 
     public void ResetStatus()
@@ -147,6 +148,7 @@ public class PlayerCharacterController : MonoBehaviour
             quaternion.Set(0, -1, 0, 0);
         }
         var throwable = Instantiate(ThrowableObject, transform.position + offset, quaternion);
+        Throwables.Add(throwable);
         throwable.GetComponent<ThrowableController>().Hit += (s, collision) =>
         {
             if (collision.gameObject != playerRigidbody.gameObject)
@@ -164,7 +166,6 @@ public class PlayerCharacterController : MonoBehaviour
             }
         };
 
-        Throwables.Add(throwable);
         if (direction == Vector3.zero)
         {
             throwable.GetComponent<Rigidbody2D>().AddForce(offset * power);

@@ -19,6 +19,8 @@ public class FishFightGameController : BaseGameController
 
     [SerializeField]
     private int secondsToRespawn = 4;
+    [SerializeField]
+    private GameObject blood;
 
     private List<Vector2> _initialSpawnPoints = new List<Vector2>
     {
@@ -95,9 +97,9 @@ public class FishFightGameController : BaseGameController
 
     private async Task PlayerDiedAsync(Player player, Collider2D collision)
     {
-        player.characterController.CanMove = false;
-        player.characterController.CanJump = false;
-        player.characterController.CanThrowStuff = false;
+        Instantiate(blood, player.playerCharacter.gameObject.transform.position, Quaternion.identity);
+
+        player.characterController.AllowCharacterControll = false;
         player.playerCharacter.circleCollider2D.enabled = false;
         player.playerCharacter.boxCollider2D.enabled = false;
         player.playerCharacter.rb2D.AddForce(new Vector2(0, -100));
@@ -109,9 +111,7 @@ public class FishFightGameController : BaseGameController
         player.playerCharacter.boxCollider2D.enabled = true;
         player.playerCharacter.rb2D.velocity = Vector3.zero;
         player.characterController.gameObject.transform.position = _spawnPoints.ElementAt(Array.IndexOf(players, player));
-        player.characterController.CanMove = true;
-        player.characterController.CanJump = true;
-        player.characterController.CanThrowStuff = true;
+        player.characterController.AllowCharacterControll = true;
     }
 
     private void CheckGameOver()

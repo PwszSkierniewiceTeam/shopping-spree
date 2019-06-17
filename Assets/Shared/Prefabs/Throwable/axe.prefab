@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69943529eece294f981d4c284cee299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disapearParticles: {fileID: 8402889487373777449, guid: f1c4d43388c442242807be4d1cce2dfd,
+    type: 3}
 --- !u!50 &7534402769199401172
 Rigidbody2D:
   serializedVersion: 4
@@ -185,7 +187,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 2104938527112609299}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 53f6daedfb8b282449963bc1297d18c2, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
