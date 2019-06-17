@@ -11,7 +11,9 @@ namespace Shared.Prefabs.PlayerCharacter
         [NonSerialized] public readonly Subject<Collider2D> onTriggerStay2DSub = new Subject<Collider2D>();
         [NonSerialized] public readonly Subject<Collider2D> onTriggerExit2DSub = new Subject<Collider2D>();
         [NonSerialized] public Rigidbody2D rb2D;
-        [NonSerialized] public PolygonCollider2D collider2D;
+        //[NonSerialized] public PolygonCollider2D collider2D;
+        [NonSerialized] public BoxCollider2D boxCollider2D;
+        [NonSerialized] public CircleCollider2D circleCollider2D;
 
         public AudioClip fartSound;
 
@@ -79,7 +81,9 @@ namespace Shared.Prefabs.PlayerCharacter
         private void Start()
         {
             rb2D = GetComponent<Rigidbody2D>();
-            collider2D = GetComponent<PolygonCollider2D>();
+            //collider2D = GetComponent<PolygonCollider2D>();
+            boxCollider2D = GetComponent<BoxCollider2D>();
+            circleCollider2D = GetComponent<CircleCollider2D>();
         }
 
         private void InitializeAudio()

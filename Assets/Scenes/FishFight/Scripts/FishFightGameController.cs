@@ -5,6 +5,8 @@ using UniRx;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+using System.Threading.Tasks;
 
 public class FishFightGameController : BaseGameController
 {
@@ -14,6 +16,20 @@ public class FishFightGameController : BaseGameController
     private bool _roundStarted;
     public GameObject instruction;
     public GameObject throwable;
+
+    [SerializeField]
+    private int secondsToRespawn = 4;
+    [SerializeField]
+    private GameObject blood;
+
+    private List<Vector2> _initialSpawnPoints = new List<Vector2>
+    {
+        new Vector2(-8, 3.6f),
+        new Vector2(8f, 3.6f),
+        new Vector2(-8f, -2.5f),
+        new Vector2(8f, -2.5f)
+    };
+    private Vector2[] _spawnPoints;
 
     private void Awake()
     {
@@ -36,15 +52,9 @@ public class FishFightGameController : BaseGameController
     private new void Start()
     {
         base.Start();
-        SpawnPlayersCharacters(new[]
-            {
-                    new Vector2(-8, 3),
-                    new Vector2(-8f, -2.5f),
-                    new Vector2(8f, -2.5f),
-                    new Vector2(8f, 3)
-                }
-        );
-        //WatchForCollisions();
+        _spawnPoints = _initialSpawnPoints.Take(players.Length).ToArray();
+        SpawnPlayersCharacters(_spawnPoints);
+        WatchForCollisions();
 
         Physics2D.gravity = Vector2.zero;
         Countdown countdownInstance = countdown.GetComponent<Countdown>();
@@ -61,7 +71,9 @@ public class FishFightGameController : BaseGameController
                 player.characterController.CanCrouch = true;
                 player.characterController.CanThrowStuff = true;
                 player.characterController.ThrowableObject = throwable;
-                player.characterController.CanThrowMoreThanOneThing = true;
+                player.characterController.CanThrowMoreThanOneThing = false;
+                player.characterController.IsThrowPowerFromButtonHold = true;
+                player.characterController.ResetStatus();
             }
         });
     }
@@ -72,14 +84,34 @@ public class FishFightGameController : BaseGameController
         foreach (Player player in players)
         {
             Player p = player;
-            p.playerCharacter.onCollisionEnter2DSub.Subscribe((Collision2D other) => PlayerDied(p, other));
+            p.playerCharacter.onTriggerEnter2DSub.Subscribe(async (Collider2D collision) =>
+            {
+                if (collision.gameObject.layer == LayerMask.NameToLayer("Killz") && !player.characterController.Throwables.Contains(collision.gameObject))
+                {
+                    await PlayerDiedAsync(p, collision);
+                }
+
+            });
         }
     }
 
-    private void PlayerDied(Player player, Collision2D other)
+    private async Task PlayerDiedAsync(Player player, Collider2D collision)
     {
-        player.isDead = true;
-        CheckGameOver();
+        Instantiate(blood, player.playerCharacter.gameObject.transform.position, Quaternion.identity);
+
+        player.characterController.AllowCharacterControll = false;
+        player.playerCharacter.circleCollider2D.enabled = false;
+        player.playerCharacter.boxCollider2D.enabled = false;
+        player.playerCharacter.rb2D.AddForce(new Vector2(0, -100));
+
+        await ((Func<int, Task>)(async t => await Task.Delay(TimeSpan.FromSeconds(t))))(secondsToRespawn);
+
+        player.characterController.ResetStatus();
+        player.playerCharacter.circleCollider2D.enabled = true;
+        player.playerCharacter.boxCollider2D.enabled = true;
+        player.playerCharacter.rb2D.velocity = Vector3.zero;
+        player.characterController.gameObject.transform.position = _spawnPoints.ElementAt(Array.IndexOf(players, player));
+        player.characterController.AllowCharacterControll = true;
     }
 
     private void CheckGameOver()
